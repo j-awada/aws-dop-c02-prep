@@ -1,0 +1,7 @@
+[book]
+authors = ["j-awada"]
+language = "en"
+src = "src"
+title = "AWS Professional DevOps Certificate Material"
+[output.html]
+number-chapters = false
