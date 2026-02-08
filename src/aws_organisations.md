@@ -10,7 +10,7 @@ The organisation has consolidated billing i.e. billing is removed for member acc
 
 New accounts can join an organisation via a link or they can be created directly. When creating or adding a new account to an organisation, a role is created or manually added respectively. This role allows the management account to switch into those new accounts.
 
-### SCP (service control policy)
+### SCP (Service Control Policy)
 
 * A feature of AWS organisations which can be used to restrict AWS accounts
 * SCP is a JSON policy that can be attached to an organisation, organisation unit or AWS account
@@ -18,4 +18,24 @@ New accounts can join an organisation via a link or they can be created directly
 * SCP does not grant permissions, it only creates boundaries
 * The default is Allow, you need to add Deny or remove the default Allow access
 
-[to be cont.]
+Example organisation structure:
+
+```Bash
+Root
+|
+|---> management account
+|---> Dev (OU)
+       |
+       |---> dev account
+|
+|---> Prod (OU)
+       |
+       |---> prod account
+```
+
+The SCP needs to be enabled.
+* `FullAWSAccess` policy is active
+* Create a new SCP eg. to deny S3 actions
+* Apply the new SCP to the prod OU
+* Detach the `FullAWSAccess` SCP from prod OU
+* When you switch roles to the prod account, you will not have access to S3

@@ -77,3 +77,19 @@ Example usage includes: blocking access to certain content, protecting online id
 A server that sits infront of the web servers intercepting requests from clients such that the client does not communicate directly with the origin server.
 
 Benefits include load balancing, protection from attacks, caching, SSL encryption.
+
+### DNS
+
+A DNS zone is a database containing records. A nameserver (NS) is a DNS server that hosts 1 or more zones. (More on that in the Route53 tab).
+
+**DNS query flow:**
+
+* A user requests a domain eg. www.netflix.com
+* DNS is used to locate the authoritative zone which hosts the record(s), to obtain the IP address of this domain
+* First the local cache and host file is checked
+* Next a DNS resolver is used, usually provided by the ISP (Internet Service Provider)
+* The resolver checks its cache and if needed, queries the root zone via 1 of the root servers. The IP of this server is maintained in the browser
+* The root server will return details of the `.com` nameservers
+* The resolver then queries the netflix.com DNS nameservers
+* They will return an authoritative response
+* This might just give a CNAME instead of an IP, in which case another query is needed

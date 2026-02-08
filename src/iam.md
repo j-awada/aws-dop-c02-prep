@@ -50,3 +50,15 @@ Scenarios for using role:
 * In case of AWS services like Lambda where it needs access rights to perform actions. You should avoid hardcoding access keys into the Lambda function. A role is created and the Lambda function is added to its Trust policy. This role has a Permissions policy which grants access to AWS products and services. The `sts::AssumeRole` is then used by the Lambda function.
 
 * External identity. To allow users with external identities outside of AWS to do single sign-on. This use case enables exceeding the 5000 user-limit enforced on AWS accounts. In this example, a role can be assumed by an external identity.
+
+### ARN (Amazon Resource Name)
+
+Used to uniquely identify resources within an AWS account.
+
+It can have the following structures:
+
+* `arn:partition:service:region:account-id:resource-id`
+* `arn:partition:service:region:account-id:resource-type/resource-id`
+* `arn:partition:service:region:account-id:resource-type:resource-id`
+
+Eg. `arn:aws:s3:::my-bucket/*`
