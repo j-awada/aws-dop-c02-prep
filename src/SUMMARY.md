@@ -20,4 +20,5 @@
 - [Advanced Identity and Permissions](./advanced_identity_and_permissions.md)
 - [Route53](./route53.md)
 - [Storage](./storage.md)
+- [S3 misc.](./s3_misc.md)
 - [Disaster Recovery](./disaster_recovery.md)

@@ -87,3 +87,37 @@ They physically connect to 1 EC2 host. Instances on that host can access those v
 They are only attached at launch time.
 
 Data is lost if the volume moves, is resized or if there is hardware failure.
+
+## Storage Gateway
+
+Runs as a virtual machine on premises, it enables hybrid storage between on-prem and AWS. It connects on-prem applications to unlimited cloud storage.
+
+It works by installing the storage appliance in your local data centre, it then handles data transfer, encryption and caching. The storage appliance connects to local applications via LAN and to AWS via internet or Direct Connect.
+
+## Types of storage gateway
+
+**S3 File Gateway**
+
+This is best used for object storage, storing unstructured data (images, logs, etc.) in S3. It links on-prem file storage and S3.
+
+Mount points are created locally and are available via 2 protocols NFS (Linux) or SMB (Windows).
+
+Allows 10 bucket shares pre File Gateway.
+
+File Gateway does not support object locking in the case of multiple file share to a bucket.
+
+**FSx File Gateway**
+
+Used for configuration or file data. Offers low overhead for accessing files.
+
+**Volume Gateway**
+
+Provides block storage. It provides raw disks over iSCSI connection.
+
+**Tape Gateway**
+
+Makes it easier to handle backup operations i.e. instead of using physical tapes, you can use virtual tapes.
+
+Virtual Tape Library (VTL) stored in S3 buckets.
+
+Tape Shelf (VTS) stored in Glacier and is generally used for archives where they are not frequently accessed.
