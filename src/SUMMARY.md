@@ -14,6 +14,7 @@
 - [Lambda](./lambda.md)
 - [Step Functions](./step_functions.md)
 - [SNS and SQS](./sns_and_sqs.md)
+- [Elastic Container Service](./ecs.md)
 - [API Gateway](./api_gateway.md)
 - [AWS OpsWorks](./aws_opsworks.md)
 - [Credentials and Secrets](./credentials_and_secrets.md)
