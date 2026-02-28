@@ -47,3 +47,31 @@ Data can take inefficient routes to reach its destination especially if travelli
 Transfer acceleration for S3 uses the network of AWS edge locations located globally in convenient locations. This is by default switched off and needs to be enabled given certain restrictions.
 
 The AWS network is purposely build to connect regions with one another.
+
+## S3 server-side encryption
+
+Buckets are not encrypted, objects are. Objects can use different encryption settings.
+
+Knowing that data to and from S3 is encrypted in transit, encryption at rest i.e. how data is stored on disk can be:
+
+**client-side encryption:**
+
+Data is encrypted at the client side and S3 receives data that is already encrypted. The client is responsible for the encryption keys and for the encryption process. Here, S3 is just used for storage.
+
+**server-side encryption:**
+
+Data is not encrypted on the client side but when it reaches S3 it gets encrypted. FYI encryption at rest is mandatory on S3.
+
+Serve-side encryption for S3 objects has 3 types:
+
+1. SSE-C (server-side encryption with customer-provided keys)
+
+The customer is responsible for the keys but S3 handles the cryptographic operation.
+
+2. SSE-S3 (server-side encryption with Amazon S3-managed keys)
+
+This is the default. S3 provides the key and the encryption process.
+
+3. SSE-KMS (server-side encryption with KMS keys stored in AWS KMS)
+
+Here, the KMS service is involved. The client has control over the KMS key. S3 handles the encryption process.
