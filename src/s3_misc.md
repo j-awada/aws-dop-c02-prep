@@ -75,3 +75,11 @@ This is the default. S3 provides the key and the encryption process.
 3. SSE-KMS (server-side encryption with KMS keys stored in AWS KMS)
 
 Here, the KMS service is involved. The client has control over the KMS key. S3 handles the encryption process.
+
+## S3 bucket keys
+
+This helps S3 scale and reduce cost when using KMS encryption.
+
+Usually every object requires a unique KMS key to get encrypted. Which means that for every S3 object, a unique KMS key is needed. This increases cost due to the many requests to KMS, it might also be subject to throttling restrictions.
+
+With bucket keys, instead of the KMS key being used to generate many data encryption keys, it is used to generate a time-limited bucket key. The bucket key is then used to generate data encryption keys for objects in the bucket. This reduces KMS API calls, reduces cost and improves scalability.
