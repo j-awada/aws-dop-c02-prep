@@ -156,3 +156,58 @@ Is a storage class that contains 5 different storage tiers:
 The system monitors the usage of an object and moves it for you into the right tier based on frequency of access.
 
 This class is good for data where the access pattern changes or is not known.
+
+## S3 lifecycle configuration
+
+You can create lifecycle rules on S3 buckets which can automatically transition or expire objects in the bucket.
+
+Lifecycle configuration is a set of rules that consist of actions which apply based on criteria i.e. do X if Y. They can be applied on a bucket or a group of objects in that bucket defined by prefix or tags.
+
+Actions can be of 2 types:
+
+* Transition actions: they can change the storage class of an object eg. from S3 Standard to S3 Standard-IA.
+
+Note this exception: objects in S3 One Zone-IA can transition into S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive but not S3 Glacier Instant Retrieval.
+
+<div align="center">
+    <img src="./images/s3-storage-class-transition.png" alt="s3 storage class transition" width="500" />
+</div>
+
+Transition can not happen in an upward direction, only downward.
+
+Note that if an object is stored in S3 Standard, it requires to have been there for a minimum of 30 days before transitioning to an infrequent access tier like S3 Standard-IA or S3 One Zone-IA.
+
+A duration of 30 days is required if objects were to transition further from IA tiers to Glacier classes.
+
+* Expiration actions: they can delete objects or object versions.
+
+## S3 Replication
+
+Replicating objects between a source and destination S3 bucket. 2 types of replication are supported by S3:
+
+1. Cross-Region Replication (CRR)
+
+Allows replication of objects from a source bucket to 1 or more destination buckets in different AWS regions.
+
+2. Same-Region Replication (SRR)
+
+The same process but where the source and destination buckets are in the same region.
+
+An IAM role is configured to allow the S3 service to use it. The premissions on this role allows it to read data on the source bucket and replicate them on the destination bucket.
+
+In case of replication between different AWS accounts, a bucket policy on the destination bucket is needed to allow the IAM roles to replicate data into it.
+Replication between bucket of the same account do not need this policy because the destination bucket trusts the source bucket.
+
+You can replicate all objects or a subset and you can choose the storage class to be used. You can also define ownership of the objects eg. owned by the account of the destination bucket. You can also define a Replication Time Control (RTC) between the source and destination bucket.
+
+### Notes in replication
+
+By default, replication is not retroactive i.e. objects that were already there are not replicated. Batch replication can be used to replicate existing objects.
+
+Versioning needs to be ON.
+
+Replication is one-way and is not bi-directional.
+
+Replication is able to handle objects that are unencrypted, SSE-S3, SSE-KMS and SSE-C.
+
+Replication can not happen on objects in Glacier or Glacier Deep Archive.
