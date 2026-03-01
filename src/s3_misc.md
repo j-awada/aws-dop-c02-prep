@@ -111,3 +111,48 @@ This is cheaper than Standard and Standard-IA but with some compromise.
 Shares most of the features of Standard-IA but data is not replicated and is stored in 1 AZ only.
 
 This class should be used for long-lived data which is not critical and replaceable and where access is infrequent.
+
+**4. S3 Glacier Instant Retrieval**
+
+Is like S3 Standard-IA but has cheaper storage, more expensive retrieval and longer minimum storage duration of 90 days instead of 30.
+
+Although it costs more to access the data, instant data access is still an option here.
+
+**5. S3 Glacier Flexible Retrieval**
+
+This allows storing data in a chilled state.
+
+Similar to S3 Standard but with a storage cost 1 sixth of the cost of S3 Standard. It is therefore cost-effective but with some tradeoff.
+
+Objects stored here are cold and not immediately available. Objects cannot be made publicly available and to gain access, a retrieval operation needs to be performed.
+You pay for object retrieval and they are stored in the S3 Standard class on a temporary basis. They are removed once accessed.
+
+Retrieval can be **expedited** (1-5 minutes), **standard** (3-5 hours) and **bulk** (5-12 hours). The faster, the more expensive. Objects have a first byte latency in minutes or hours so this is not ideal for static website hosting.
+
+Some limitations here are a 40KB minimum billable size and a 90 day minimum billable duration.
+
+This class is ideal for archival data where frequent or real-time access is not needed.
+
+**6. S3 Glacier Deep Archive**
+
+Is the cheapest storage class and allows storing data in frozen state. It also has 40KB minimum billable size and 180 day minimum billable duration.
+
+Similar to Glacier Flexible, objects are not publicly available and a retrieval job is needed to access the data.
+
+Data is temporarily retrieved to S3 Standard-IA which takes 12 hours and Bulk up to 48 hours.
+
+First byte latency is in hours or days.
+
+**7. S3 Intelligent-Tiering**
+
+Is a storage class that contains 5 different storage tiers:
+
+* Frequent access
+* Infrequent access
+* Archive instant access
+* Archive access
+* Deep archive
+
+The system monitors the usage of an object and moves it for you into the right tier based on frequency of access.
+
+This class is good for data where the access pattern changes or is not known.
