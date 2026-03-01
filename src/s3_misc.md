@@ -83,3 +83,31 @@ This helps S3 scale and reduce cost when using KMS encryption.
 Usually every object requires a unique KMS key to get encrypted. Which means that for every S3 object, a unique KMS key is needed. This increases cost due to the many requests to KMS, it might also be subject to throttling restrictions.
 
 With bucket keys, instead of the KMS key being used to generate many data encryption keys, it is used to generate a time-limited bucket key. The bucket key is then used to generate data encryption keys for objects in the bucket. This reduces KMS API calls, reduces cost and improves scalability.
+
+## Object storage classes
+
+**1. S3 Standard**
+
+This is the default class where objects are replicated across at least 3 AZs. It can cope with AZ failure. It provides 11 nines (9s) of durability. The replication uses Content-MD5 Checksums and Cyclic Redundancy Checks (CRCs) to detect and fix any data corruption.
+
+Billing is 1 GB per month fee for data stored. A $ per GB charge for transfer OUT (IN is free) and a price per 1,000 requests. No retrieval fee.
+
+This class should be used for frequently accessed data which is important and non-replaceable.
+
+**2. S3 Standard-IA (infrequent access)**
+
+Shares most of the architecture of S3 Standard however it is much cheaper than S3 Standard.
+
+It has a retrieval fee per GB of data, it is therefore designed for minimally accessed data.
+
+It has a minimum duration charge of 30 days.
+
+This class should be used for long-lived data which is important but where access is infrequent.
+
+**3. S3 One Zone-IA**
+
+This is cheaper than Standard and Standard-IA but with some compromise.
+
+Shares most of the features of Standard-IA but data is not replicated and is stored in 1 AZ only.
+
+This class should be used for long-lived data which is not critical and replaceable and where access is infrequent.
