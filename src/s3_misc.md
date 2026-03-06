@@ -204,10 +204,92 @@ You can replicate all objects or a subset and you can choose the storage class t
 
 By default, replication is not retroactive i.e. objects that were already there are not replicated. Batch replication can be used to replicate existing objects.
 
-Versioning needs to be ON.
+Versioning needs to be ON on both source and destination buckets.
 
 Replication is one-way and is not bi-directional.
 
 Replication is able to handle objects that are unencrypted, SSE-S3, SSE-KMS and SSE-C.
 
 Replication can not happen on objects in Glacier or Glacier Deep Archive.
+
+## S3 Pre-signed URLs
+
+Used to give another person access to objects in an S3 bucket using your credentials and in a secure way.
+
+Example: an IAM admin can make a request to S3 to generate a pre-signed URL while providing security credentials, bucket name, object key and expiry datetime and how the object will be accessed. The URL returned has encoded in it all the information provided.
+The unauthenticated user using the pre-signed URL interacts with the object as the preson who generated it.
+
+## Exam powerups
+
+* A pre-signed URL can be created for an object you don't have access to
+* The premissions used when an object is accessed via a pre-signed URL match the identity which generated it
+* Authentication to an object in a bucket can be provided via a token in the URL
+* You can generate a pre-signed URL for an object that does not exist
+* You can create a pre-signed URL using the CLI `aws s3 presign <options>`
+
+## S3 Select and Glacier Select
+
+These 2 services can store objects with huge size (up to 5TB). Sometimes you do not want to retrieve an entire object and you want to instead filter it on the bucket side. S3 and Glacier Select services allow you to create a SQL-like statement to retrieve partial objects.
+The S3 service can use the SQL-like statement and apply it to the raw data in S3 to filter it down.
+
+File formats include CSV, JSON, Parquet BZIP2 compression for CSV and JSON.
+
+## S3 Events
+
+This feature allows you to create event configurations on a bucket. When enabled, a notification is generated when an event occurs in a bucket. Events can be delivered to different destinations eg. SNS, SQS and Lambda functions.
+
+Eg. on object creation, restores, replications or deletion. The events themselves are JSON objects.
+
+EventBridge is an alternative and it supports more types of events and more services.
+
+## S3 Access Logs
+
+Helps understand what types of accesses are occurring on a source bucket. The logs are stored in a target bucket.
+
+This feature needs to be enabled on the source bucket. Loggin is managed by a system called the S3 Log Delivery Groups. This group needs to be given access to the target bucket via an ACL.
+
+## S3 Object Lock
+
+This feature is enabled on new buckets along with versioning. Once enabled, it can not be disabled.
+
+Object Lock implements a Write-Once-Read-Many (WORM) architecture where objects versions can't be overwritten or deleted.
+
+Has 2 types:
+
+1. S3 object lock retention
+
+When you create the object lock, you specify the retention period in days or years.
+
+This has 2 modes:
+
+* Compliance mode: an object can not be adjusted deleted or overwritten during the retention period. And no change is possible to the retention period settings.
+
+Eg. used for medical or financial data.
+
+* Governance mode: same, but special permissions can be granted to allow lock settings to be adjusted. This is done using this permission `s3:BypassGovernanceRetention`.
+
+2. S3 object local legal hold
+
+A retention period is not set here and instead legal hold is set to be ON or OFF. There is no concept of retention.
+
+Here you can not delete ot change the object version. The `s3:PutObjectLegalHold` permission allows you to add or remove the legal hold feature.
+
+<div align="center">
+    <img src="./images/s3-object-lock.png" alt="s3 object lock" width="500" />
+</div>
+
+## S3 Access Points
+
+Features that improves the accessibility of S3 buckets, it simplifies the access to S3 buckets and objects.
+
+Every access point can have an endpoint and can be used from within different networks.
+
+Extra reading: https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies
+
+## S3 Inventory
+
+Helps you manage your storage within S3 buckets. Can be configured to generate inventory reports based on a specific frequency, eg. daily or weekly.
+
+Output is generated in 1 of these 3 formats: CSV, ORC, Parquet.
+
+The reports are stored in the target bucket.
