@@ -93,3 +93,30 @@ A DNS zone is a database containing records. A nameserver (NS) is a DNS server t
 * The resolver then queries the netflix.com DNS nameservers
 * They will return an authoritative response
 * This might just give a CNAME instead of an IP, in which case another query is needed
+
+### Cross-Origin Resource Sharing (CORS)
+
+**Origin** is the site you visit.
+
+Same-origin requests are always allowed, eg. when the browser calls a domain which defines origin.
+
+Cross-origin requests are made to different domains than the origin i.e. when the AWS API is called to retrieve an image from another bucket. These requests are always restricted but are controlled by CORS. CORS are defined on the origin and provide directives to allow the cross-origin requests.
+
+CORS configuration can be defined on S3 buckets using JSON. CORS configuration is processed in order.
+
+**Request types**
+
+There are 2 types of requests to a resource that could require a CORS configuration.
+
+1. Simple requests: works as long as the other origin is configured to allow requests from the original origin.
+
+2. Preflight and Preflighted requests: when the browser sends a HTTP request to the other origin to determine if the request you are making is safe to send.
+
+**CORS configuration**
+
+Some relevant configuration that the other origin sends to the web browser:
+
+* `Access-Control-Allow-Origin` can be `*` or a particular origin allowed to make requests
+* `Access-Control-Max-Age` indicates how long results of a preflight request can be cached
+* `Access-Control-Allow-Methods` defines methods that could be used for cross-origin requests
+* `Access-Control-Allow-Headers` can be contained in the CORS configuration and in the response to a preflight request and indicates which HTTP headers can be used with the request
