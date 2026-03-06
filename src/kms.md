@@ -18,4 +18,4 @@ The way this is used is that the plaintext version is used to encrypt data. The 
 
 ## Key policy
 
-Every key has a key policy because you have to explicitly declare that the kwy trusts the identity using it.
+Every key has a key policy because you have to explicitly declare that the key trusts the identity using it.
