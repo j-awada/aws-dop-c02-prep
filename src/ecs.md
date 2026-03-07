@@ -24,3 +24,12 @@ Can be EC2 or Fargate.
 * Removes management overhead
 * You don't have to manage EC2 instances as container hosts
 * The difference with Fargate is how containers are actually hosted. AWS maintains a shared Fargate infrastructure platform, which is offered to all users of Fargate. You still make use of VPC.
+
+
+## Elastic Container Registry (ECR)
+
+Is a managed container image registry service. Registries can be public or private. A registry can contain many repositories.
+
+ECR is integrated with IAM. It comes with image scanning, basic and enhanced.
+
+ECR offers replication of container images that can be cross-region or cross-account.
