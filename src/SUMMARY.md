@@ -24,4 +24,5 @@
 - [Key Management Service](./kms.md)
 - [S3 misc.](./s3_misc.md)
 - [Elastic File System](./efs.md)
+- [SDLC Automation](./sdlc_automation.md)
 - [Disaster Recovery](./disaster_recovery.md)
