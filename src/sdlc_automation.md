@@ -110,7 +110,7 @@ Whenever code is commited to the code repo, an automated build pipeline will run
 
 **Add a deploy step to the pipeline**
 
-* create an application load balancer with a target group
+* create an application load balancer, configure security groups and a target group
 * create an ECS cluster, create a task and container definition. Use the image created the during code build stage.
 * add a deploy stage in the CodePipeline pipeline. Use the image definitions JSON file containing information about the built image in this step.
 
