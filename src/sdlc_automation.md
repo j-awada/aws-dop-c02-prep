@@ -78,3 +78,42 @@ This file has 4 main phases:
 The build spec file also allows you to define environment variables eg. parameter store or secrets manager variables.
 
 It also contains an artifacts section.
+
+## Practical example
+
+### Manual CodeBuild process
+
+Steps to create a Docker image from a code repository.
+
+* create a code repo on CodeCommit
+* create an ECR repo on ECR
+* create a build project in CodeBuild
+    - here you can use the CodeCommit repo as the source of the Dockerfile to build
+    - specify an environment eg. OS type where the build will run
+    - specify the destination image repo i.e. where the container image built will be stored
+* you can use CloudWatch to store logs
+* configure the right permissions
+    - Permissions are required for the build project to interact with other AWS services.
+    To add permissions, create an inline policy in the IAM role used by the CodeBuild project. Permissions to interact with ECR eg. PutImage.
+* configure the build spec YAML file `buildspec.yml` with the various build steps.
+
+### Automated CodeBuild process
+
+Whenever code is commited to the code repo, an automated build pipeline will run to build the image and store it on ECR. This is done using CodePipeline.
+
+* create new CodePipeline
+* allow CodePipeline to create a new service role
+* select a source i.e. the CodeCommit repo
+* select a build provider i.e. CodeBuild where the build project exists
+* artifacts are by default stored in S3
+* you can have a step in the `post_build` stage to create a JSON file containing information about the image created. You can store this file in S3 and use it for the deployment step.
+
+**Add a deploy step to the pipeline**
+
+* create an application load balancer with a target group
+* create an ECS cluster, create a task and container definition. Use the image created the during code build stage.
+* add a deploy stage in the CodePipeline pipeline. Use the image definitions JSON file containing information about the built image in this step.
+
+<div align="center">
+    <img src="./images/codepipeline_example.png" alt="CodePipeline example" width="500" />
+</div>
