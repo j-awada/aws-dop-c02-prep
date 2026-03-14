@@ -6,7 +6,7 @@ CloudFront is for download operations only, and uploads are done directly to the
 
 **Some terms:**
 
-* Origin: the source location of the content. Can be S3 Origin or Custom Origin.
+* Origin: the source location of the content. Can be S3 Origin or Custom Origin. Groups of origins can improve resiliency.
 
 * Distribution: the unit of configuration within CloudFront.
 
@@ -82,3 +82,16 @@ If the origin is S3, S3 handles certificates natively and nothing needs to be do
 In the past, every SSL-enabled website needed its own IP address. It is however possible to host 2 domains on the same server. The latter is achieved using a header in the request to indicate which website is requested.
 
 In 2023, SNI (Serve Name Indication) appeared which is a TLS extention that allows a client to tell the server which domain it is trying to access. This occurs within the TLS handshake before HTTP. This allows 1 server to host several websites. The issue is that older browser do not support SNI. Hence why CLoudFront supports both SNI but also IP per server at an extra cost.
+
+## Origin types
+
+Origins are where CloudFront goes to get content Origins are selected from the Behaviour section.
+
+Origins can be:
+
+* S3 buckets
+* AWS media package channel endpoints
+* AWS media store container endpoints
+* everything else i.e. web servers
+
+With S3 as origin, the same protocol is used on the viewer and origin sides.
