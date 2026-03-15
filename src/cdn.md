@@ -141,3 +141,23 @@ Signed URLS provide access to 1 object.
 Cookies provide access to groups of objects and keeps the object URL intact.
 
 The signed cookie is generated via a Lambda function after authentication is done. This cookie is returned back to the user which will use it with the request sent to the CF distribution. Access to resources is then granted.
+
+## CloudFront Geo Restriction
+
+Determines which areas of the planet can access content delivered via CF.
+
+It has 2 types:
+
+1. CF Geo Restriction
+
+Is a built-in, whitelist or blacklist architecture. This only works with countries. Uses a GeoIP database with 99.8%+ accuracy.
+
+<div align="center">
+    <img src="./images/georestriction.png" alt="CF Geo Restriction" width="500" />
+</div>
+
+2. Third party Geolocation
+
+Is customisable. You can use this to access 3rd party geolocation services, so it can be more accurate. It can also be used to restrict based on users, browsers, or other and not just geolocation.
+
+It works using signed URLs or cookies.
