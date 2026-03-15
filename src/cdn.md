@@ -161,3 +161,14 @@ Is a built-in, whitelist or blacklist architecture. This only works with countri
 Is customisable. You can use this to access 3rd party geolocation services, so it can be more accurate. It can also be used to restrict based on users, browsers, or other and not just geolocation.
 
 It works using signed URLs or cookies.
+
+## Lambda at the Edge
+
+Allows you to run lightweight Lambda functions at edge locations. They don't have the full Lambda feature set.
+
+Use cases include:
+
+* A/B testing using a Viewer Request function
+* As part of the Origin request eg. migration betweem S3 origins
+* Customise behaviour based on the device type of a customer
+* Vary the content displayed by country
