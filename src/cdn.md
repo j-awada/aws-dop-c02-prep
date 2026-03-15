@@ -99,3 +99,29 @@ With S3 as origin, the same protocol is used on the viewer and origin sides.
 ## Cache invalidation
 
 From the AWS console and in a distribution, under the invalidations tag, you can create a new invalidation. An invalidation is an operation which sends a directive to every edge location to invalidate 1 or more objects.
+
+## Securing the CF content delivery path
+
+How to make sure that a customer does not bypass CloudFront to access data in the origin directly.
+
+### OAI (Origin Access Identity)
+
+This is only applicable to S3 origins and not S3 static websites used as origin.
+
+Is a type of identity that can be associated with a CloudFront distribution where when the distribution is trying to access data, it becomes the OAI.
+
+The OAI can be used within bucket policy eg. DENY all except the OAI. This way a direct access to origin is denied.
+
+### Access identity for non-S3 origin
+
+There are 2 ways around this:
+
+1. Custom headers
+
+Configure CloudFront to send a custom header to the origin. Since this is over HTTPS, the headers are not be visible and can not be immitated.
+
+If the header is missing, the origin will refuse the request.
+
+2. Firewall
+
+Create a firewall around the custom origin to only allow requests from the edge location IP addresses and deny everything else.
