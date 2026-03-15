@@ -125,3 +125,19 @@ If the header is missing, the origin will refuse the request.
 2. Firewall
 
 Create a firewall around the custom origin to only allow requests from the edge location IP addresses and deny everything else.
+
+## Delivering private content to end users
+
+CloudFront can run in public or private modes. Private mode is achieved in 2 ways:
+
+1. Signed URLs
+
+When a signer is added to a distribution, it becomes private. Trusted key groups are used to generate signed URLs.
+
+Signed URLS provide access to 1 object.
+
+2. Signed cookies
+
+Cookies provide access to groups of objects and keeps the object URL intact.
+
+The signed cookie is generated via a Lambda function after authentication is done. This cookie is returned back to the user which will use it with the request sent to the CF distribution. Access to resources is then granted.
