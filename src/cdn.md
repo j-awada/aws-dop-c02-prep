@@ -95,3 +95,7 @@ Origins can be:
 * everything else i.e. web servers
 
 With S3 as origin, the same protocol is used on the viewer and origin sides.
+
+## Cache invalidation
+
+From the AWS console and in a distribution, under the invalidations tag, you can create a new invalidation. An invalidation is an operation which sends a directive to every edge location to invalidate 1 or more objects.
