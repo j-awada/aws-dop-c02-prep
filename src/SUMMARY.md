@@ -11,6 +11,7 @@
 - [AWS Storage](./storage.md)
     - [Elastic Block Storage](./elastic_block_storage.md)
     - [S3 misc.](./s3_misc.md)
+    - [DynamoDB](./dynamodb.md)
 - [Elastic Load Balancing](./load_balancers.md)
 - [Cloudformation](./cloudformation.md)
 - [Elasic Beanstalk](./elastic_beanstalk.md)
