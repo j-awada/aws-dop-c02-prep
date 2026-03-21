@@ -56,6 +56,14 @@ Pipelines are built from Stages which contain sequential or parallel actions. Th
     <img src="./images/code_pipeline.png" alt="CodePipeline" width="500" />
 </div>
 
+CodePipeline can be triggered as follows:
+
+* Pipeline creation: a pipeline gets triggered when created.
+* Put action or changes on objects in the pipeline.
+* CloudWatchEvent trigger: the source action provider here is CodeCommit.
+* Webhook events for 3rd party sources like GitHub, BitBucket, GitLab, etc.
+* Manually triggering the pipeline
+
 ## CodeBuild
 
 Is a build-as-a-service product that lets you manage a build environment where you pay for the resources consumed during builds. It is also used during the test stage.

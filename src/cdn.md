@@ -41,6 +41,9 @@ The Behaviour can be configured from the Distribution. There is a default behavi
 
 Behaviour configurations include the origin source, protocol and methods, viewer access, Lambda function association, caching and TTL controls.
 
+## CloudFront and origin failover
+
+For high availability, CloudFront can be configured with origin failover by creating an origin group with 2 origins; a primary and a secondary. If the primary origin is unavailable, CloudFront switched to the secondary origin.
 
 ## TTL and invalidation
 
