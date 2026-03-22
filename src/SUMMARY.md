@@ -28,4 +28,5 @@
 - [Elastic File System](./efs.md)
 - [Content Delivery Network](./cdn.md)
 - [SDLC Automation](./sdlc_automation.md)
+- [CloudWatch](./cloudwatch.md)
 - [Disaster Recovery](./disaster_recovery.md)
