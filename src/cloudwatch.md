@@ -27,3 +27,9 @@ This product logs API calls or account activities as CloudTrail Events that are 
 You can create a trail and configure it to be stored in S3 or CLoudWatch logs.
 
 CloudTrail is not used for realtime logging, it has a 15 mins delay.
+
+## CloudTrail log file integrity validation
+
+The validation feature can be enabled on a trail which can direct CloudTrail to create and sign digest files.
+
+Digest files are found in a different folder and they contain a hash of every log file delivered in the last hour plus the signature of the log file before it. This ensures the integrity of the log files.
