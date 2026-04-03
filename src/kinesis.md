@@ -25,3 +25,40 @@ Is a service that provides realtime processing of data which flows through it us
 It ingests from Kinesis Data Streams or Firehose.
 
 The destination for the data can be Streams, Firehose or any of the services that Firehose supports.
+
+## Amazon EMR (Elastic Map Reduce)
+
+This service is a managed implementation of Apache Hadoop which is a framework for handling big data workloads using the map reduce framework.
+
+EMR runs in 1 AZ in a VPC and uses EC2 for compute. It can load input data from S3 into HDFS (Hadoop filesystem) and store output data in back to S3.
+
+The EMR cluster architecture consists of:
+
+* The HDFS which runs alongside the cluster and is ephemeral i.e. linked to the lifetime of the cluster
+* a master node which manages the cluster and can be ssh-ed to
+* a number of core nodes that act as data nodes for HDFS and can run or track tasks
+* task nodes that are optional and have no HDFS involvement, they just run tasks
+* EMRFS is a filesystem that is backed by S3 and can persist beyond the lifetime of the EMR cluster
+
+## Amazon Redshift
+
+Is a petabyte-scale data warehouse where many different operational databases from across your business can pump data into for long-term analysis. It is designed for reporting and analytics not for operational-style usage.
+
+It is an OLAP (column-based) database and not OLTP (row/transaction).
+
+It lives in 1 AZ in a VPC. It includes a leader node and a compute node.
+
+It includes some useful features like:
+
+* Redshift Spectrum which allows querying the data on S3 without loading it to Redshift
+* Federated query which allows querying data in remote data sources
+
+## Amazon QuickSight
+
+Is a business analytics and intelligence service (BA/BI) used for visualisations and ad-hoc analysis of data.
+
+## Amazon Athena
+
+Is a serverless interactive querying service to perform ad-hoc queries on data in S3 where loading/transformation of data is not requried.
+
+It uses a process called schema-on-read which modifies data in-flight as it's read and translates it to a table-like schema.
