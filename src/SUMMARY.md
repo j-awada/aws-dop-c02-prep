@@ -30,5 +30,5 @@
 - [SDLC Automation](./sdlc_automation.md)
 - [CloudWatch](./cloudwatch.md)
 - [Kinesis](./kinesis.md)
-- [Patch manager](./patch_manager.md)
+- [Security misc](./security_misc.md)
 - [Disaster Recovery](./disaster_recovery.md)
