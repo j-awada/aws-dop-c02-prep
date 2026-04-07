@@ -4,4 +4,5 @@ language = "en"
 src = "src"
 title = "AWS Professional DevOps Certificate Material"
 [output.html]
+site-url = "/aws-dop-c02-prep/"
 number-chapters = false
