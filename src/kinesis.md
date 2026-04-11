@@ -62,3 +62,11 @@ Is a business analytics and intelligence service (BA/BI) used for visualisations
 Is a serverless interactive querying service to perform ad-hoc queries on data in S3 where loading/transformation of data is not requried.
 
 It uses a process called schema-on-read which modifies data in-flight as it's read and translates it to a table-like schema.
+
+## Streaming data to OpenSearch (formerly ElasticSearch)
+
+You can stream data into OpenSearch from any service in AWS. Some services like Amazon Data Firehose and CloudWatch Logs have built-in support. Other services like Amazon S3, Kinesis Data Streams and Amazon DynamoDB use AWS Lambda functions as event handlers. [Image source: Tutorialsdojo.com]
+
+<div align="center">
+    <img src="./images/opensearch.jpg" alt="opensearch" width="500" />
+</div>
