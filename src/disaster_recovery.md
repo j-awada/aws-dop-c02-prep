@@ -51,3 +51,16 @@ For S3, you can use CRR (Amazon S3 Cross-Region Replication) to asynchronously c
 Another strategy is to have active and passive regions. An active site in a region is used to host the workload and serve traffic. A passive site in another region is used for recovery. The passive site does not actively serve traffic until a failover event is triggered.
 
 You can use a warm standby approach where you have a fully scaled down but functional copy of production in another region. This approach decreases the time to recovery.
+
+## High Availability (HA)
+
+HA does not aim to stop failure and it does not mean customers will not experience outages. A HA system is designed to be online providing services as often as possible such that when it fails, it can be fixed as quickly as possible often via automation.
+
+## Fault Tolerance
+
+Is the property that enables a system to continue operating properly in the event of the failure of some (1 or more) of its components.
+
+## Disaster Recovery (DR)
+
+Is a set of policies, tools and procedures to enable the recovery or continuation of vital technology infrastructure and systems following a natural or human-induced disaster.
+
