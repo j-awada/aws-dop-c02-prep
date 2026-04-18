@@ -23,5 +23,5 @@ This is replicated across multiple AZs in a region. So you can create a snapshot
 This is replicated across multiple AZs in a single region. It can tolerate the failure of an AZ.
 
 <div align="center">
-    <img src="./images/dr_storage.png" alt="s3 object lock" width="500" />
+    <img src="./images/dr_storage.png" alt="dr storage" width="500" />
 </div>
