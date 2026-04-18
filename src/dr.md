@@ -79,3 +79,17 @@ DynamoDB offers multi-master replication.
 With Aurora, you can have a read/write cluster in 1 region and a read-only cluster in another region.
 
 Replication for Aurora happens at the storage level and no load is placed on the database instances for that. However unlike DynamoDB, writes are only allowed in the primary cluster.
+
+## Networking DR
+
+VPCs are regional resiliant, the entire region failing will affect the VPC service.
+
+Subnets in a VPC are tied to an AZ so if an AZ fails the subnet fails.
+
+This is mitigated by using Elastic Load Balancers which are regional services. They direct traffic to various AZs so if an AZ fails, traffic is redirected to another.
+
+### Example scenario
+
+If you have 3 different regions each with VPC components and  load balancers, you can use a global service like Route53 which has 1 database as an entry point to those 3 regions.
+
+This way, if a region fails, other regions will be available.
