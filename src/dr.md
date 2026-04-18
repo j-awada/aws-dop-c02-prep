@@ -45,3 +45,37 @@ ECS in Fargate mode achieve similar characteristics as ASG i.e. the architecture
 **3. Lambda**
 
 Lambda is not a VPC-based service and can run in private or public mode (default). It would take the failure of an entire region to affect the service of a Lambda function.
+
+## Database DR
+
+**1. Custom DB**
+
+A custom database running on an EC2 instance will have resiliency level dependant on the EC2 host and AZ. Snapshotting the database improves resiliance.
+
+**2. DynamoDB**
+
+DynamoDB is a public database replicated between multiple nodes in multiple AZs. A DynamoDB database is affected by an entire AWS region failing. This means that it is a highly resiliant service and no DR measures are needed at a regional level.
+
+**3. RDS**
+
+RDS instances can run across multiple subnets in multiple AZs. There are typically primary and standby instances with their own storage each pair existing in an AZ.
+
+RDS offers cross-region read replicas but this places a load on the RDS instances since replication is not done at the storage layer.
+
+**4. Aurora**
+
+Aurora is not limited to primary and standby instances, it can have 1 or more replicas in every AZ. This makes it's availability subject to the number of AZs in the region.
+
+Aurora is the most resiliant RDS available from AWS.
+
+### Bonus: DynamoDB and Aurora
+
+Both database types have global level resiliance.
+
+The default behaviour of DynamoDB is to offer a table located in a single AWS region. However, global tables in other regions can be created where data can be replicated amongst them.
+
+DynamoDB offers multi-master replication.
+
+With Aurora, you can have a read/write cluster in 1 region and a read-only cluster in another region.
+
+Replication for Aurora happens at the storage level and no load is placed on the database instances for that. However unlike DynamoDB, writes are only allowed in the primary cluster.
