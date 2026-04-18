@@ -31,4 +31,5 @@
 - [CloudWatch](./cloudwatch.md)
 - [Kinesis](./kinesis.md)
 - [Security misc](./security_misc.md)
-- [Disaster Recovery](./disaster_recovery.md)
+- [General Disaster Recovery](./general_dr.md)
+- [Disaster Recovery](./dr.md)
