@@ -33,3 +33,17 @@ NLBs are really fast because they don't need to deal with the upper layers of th
 
 * Runs at the OSI network layer, L3
 * Can act as a single entry/exit for all traffic
+
+## Session state
+
+Is a piece of server-side information specific to a single user interacting with 1 application.
+
+Session state is hosted externally and not on an instance for eg. in a database. This allows instances to be stateless and in case of failure, session information for a logged-in user is not lost. This is optimal for scaling instances.
+
+### Session stickiness
+
+Stickiness allows us to control which backend instance should be used with a particular user connection. It locks a session to 1 backend instance.
+
+Session stickiness can be enabled on an ELB with a valid duration. The LB (ALB) then generates a cookie called AWSALB delivered to a user's browser. The cookie from the user is provided to the load balancer on every request. The cookie ensures that the requests from a user are forwarded to a specific instance on the backend.
+
+Stickiness might cause a load on backend instances and saturate a server.
