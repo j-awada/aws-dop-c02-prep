@@ -48,3 +48,15 @@ Stickiness allows us to control which backend instance should be used with a par
 Session stickiness can be enabled on an ELB with a valid duration. The LB (ALB) then generates a cookie called AWSALB delivered to a user's browser. The cookie from the user is provided to the load balancer on every request. The cookie ensures that the requests from a user are forwarded to a specific instance on the backend.
 
 Stickiness might cause a load on backend instances and saturate a server.
+
+## X-Forwarded and PROXY protocol
+
+**For ALB**
+
+When using a load balancer, the client connects to the LB and the LB connects to the backend services. The IP of the client is not visible to the backend service and only the LB IP is reached.
+
+X-Forwarded is a HTTP header that only works with HTTP(S) protocols (Layer 7). The LB adds the client IP address as a header to the HTTP request along with any other proxy address.
+
+**For NLB**
+
+The PROXY protocol works at Layer 4 and is a `tcp` header.
