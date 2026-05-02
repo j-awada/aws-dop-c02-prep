@@ -31,8 +31,9 @@ NLBs are really fast because they don't need to deal with the upper layers of th
 
 **Gateway LB**
 
-* Runs at the OSI network layer, L3
-* Can act as a single entry/exit for all traffic
+Runs at the OSI network Layer 3 and provides 3rd party appliances such as firewalls and security inspection systems.
+
+It uses the GENEVE (Generic Network Virtualisation Encapsulation) protocol on port 6081 to encapsulate and exchange traffic with 3rd party appliances.
 
 ## Session state
 
