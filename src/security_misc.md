@@ -42,3 +42,19 @@ It has 7 core checks that are free at a basic/developer tier:
 * Checks permissions on EBS public snapshots
 * Checks permissions o RDS public snapshots
 * Identifies if you are over 80% usage of the 50 most common services
+
+## WAF (Web Application Firewall)
+
+Is the AWS implementation of Layer 7 (Application) i.e. it is a firewall capable of understanding HTTP(S).
+
+WAF can protect global services like CloudFront but also regional services like ALB (Application Load Balancer).
+
+WEB ACL is associated with a WAF distribution and has Rules and Rule Groups that control how the WAF reacts.
+
+## AWS Network Firewall
+
+It defines the VPC, Subnets and Firewall Policy.
+
+<div align="center">
+    <img src="./images/network_firewall.png" alt="AWS Network Firewall" width="500" />
+</div>
