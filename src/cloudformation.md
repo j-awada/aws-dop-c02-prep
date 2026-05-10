@@ -1,20 +1,14 @@
 ## Cloudormation (CFN)
 
-* Cloudformation allows automating infrastructure provisioning
-* Starts with a template written in YAML or JSON
-* The template defines logical resources
-* A template can create 1 or more stacks
-* A template can be reusable
-* The stack definition will create physical resources based on logical resources
-* If the stack definition is updated, the physical resources also change
+Cloudformation allows automating infrastructure provisioning using JSON or YAML templates. A template; which can be reusable, defines logical resources and results in the creation of a stack.
 
-* Templates can take parameters i.e. accept input
-* Parameters are defined in the template and can have a types eg. an EC2 image
-* Pseudo parameters are defined by AWS. They are injected by AWS into the template eg. Region, stack ID, stack name, account ID, etc.
+The stack definition will create physical resources based on the logical resources. If the stack definition is updated, the physical resources will also change.
 
-* Cloudformation does things in parallel so use `DependsOn` to define an order if needed
-* You can configure Cloudformation to hold until a number of signals are successful before returning `CreateComplete`
-* You can configure a timeout for Cloudformation execution
+Templates can take parameters i.e. they accept input. Parameters are defined in the template and can have a type for eg. an EC2 image. Pseudo parameters are defined by AWS. They are injected by AWS into the template eg. Region, stack ID, stack name, account ID, etc.
+
+Cloudformation does things in parallel which is why directives like `DependsOn` are used to define an order of execution.
+
+Cloudformation can be configured to wait until a number of signals are successful before returning the `CreateComplete` signal.
 
 ### Intrinsic functions
 
