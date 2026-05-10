@@ -6,13 +6,13 @@ The stack definition will create physical resources based on the logical resourc
 
 Templates can take parameters i.e. they accept input. Parameters are defined in the template and can have a type for eg. an EC2 image. Pseudo parameters are defined by AWS. They are injected by AWS into the template eg. Region, stack ID, stack name, account ID, etc.
 
-Cloudformation does things in parallel which is why directives like `DependsOn` are used to define an order of execution.
+Cloudformation does things in parallel which is why directives like `DependsOn` can be used to define an order of execution.
 
 Cloudformation can be configured to wait until a number of signals are successful before returning the `CreateComplete` signal.
 
 ### Intrinsic functions
 
-* Allow you to gain access to data at runtime i.e. when the template is being used to create a stack eg.
+* Allow you to gain access to data at runtime i.e. when the template is being used to create a stack, for example:
     - `Ref` and `Fn::GetAtt`
     - `Fn::Join` and `Fn::Split`
     - `Fn::GetAZs` and `Fn::Select`

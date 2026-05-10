@@ -2,7 +2,7 @@
 
 ## Security Token Service (STS)
 
-STS generates temporary credentials when the `sts::AssumeRole*` operation is used to gain access to temporary credentials. This happens behind the scene.
+STS generates temporary credentials when the `sts::AssumeRole*` operation is used to gain access to temporary credentials. This happens behind the scenes.
 
 This is similar to access keys, however these credentials are short-term and they expire after a certain duration.
 
@@ -19,8 +19,17 @@ They use JSON documents like identity policies but they don't grant any permissi
 ## AWS policy evaluation logic order
 
 1. Explicit deny
-2. SCPs (service control policies)
-3. Resource policies
-4. Permissions buondaries
-5. Session policies
-6. Identity policies
+
+    By default, all requests are denied unless a policy explicitly allows them. Check for any policy that has an explicit Deny that matches the request.
+
+2. SCPs (Service Control Policies)
+
+    SCPs are set on Organisational Units (OU).
+
+3. Resource policies for services that support them eg. S3 buckets.
+
+4. IAM permissions boundaries attached to the user or role.
+
+5. Session policies, passed in the STS `AssumeRole` call and targets the session during which the role is assumed.
+
+6. Identity-based policies attached to user or role.

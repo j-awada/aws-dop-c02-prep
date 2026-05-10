@@ -47,4 +47,4 @@ The container which is (app + runtime) consumes little resources and is lightwei
 * Multiple containers can be created from 1 image
 * Layers are re-used minimising resource usage, the read/write layer is what differentiates containers.
 * A container registry is a hub of container images
-* Containers are islated from the outside world and they can expose ports so that the services in the container can be accessed
+* Containers are isolated from the outside world and they can expose ports so that the services in the container can be accessed

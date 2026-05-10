@@ -4,7 +4,7 @@ This allows larger businesses to manage multiple AWS accounts
 
 Start by taking a standard AWS account which is not in an organisation. Within this account, create an organisation. This account then becomes the management or master account of the organisation. The master account is used to invite other standard accounts into the organisation. The standard accounts that join an organisation become member accounts.
 
-The structure of an organisation is hirarchichal i.e. there is an organisation root containing organisation units.
+The structure of an organisation is hierarchical i.e. there is an organisation root containing organisation units.
 
 The organisation has consolidated billing i.e. billing is removed for member accounts. Billing is passed to the management account of the organisation.
 

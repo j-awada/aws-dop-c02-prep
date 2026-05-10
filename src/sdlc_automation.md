@@ -7,7 +7,7 @@ A development pipeline can be generally broken down to the following stages:
 3. test
 4. deploy
 
-AWS provides a range of tools that support all of those stages, for eg.
+AWS provides a range of tools that support all of those stages, for example:
 
 * CodeCommit similar to GitHub
 * CodeBuild which can handle the build and test processes
@@ -31,7 +31,7 @@ Is a service used to securely store, publish and share software packages. It can
 
 Is a build-as-a-service product that lets you manage a build environment where you pay for the resources consumed during builds. It is also used during the test stage.
 
-It is a CI service that can compile source code, run tests and produce software packages ready to deploy. It manages the build servers.
+CodeBuild is a CI service that can compile source code, run tests and produce software packages ready to deploy. It manages the build servers.
 
 It gets the source code from GitHub, CodeCommit, BitBucket, S3 and GitHub Enterprise and can integrate with open source tools like Jenkins and Spinnaker.
 
@@ -109,7 +109,7 @@ Steps to create a Docker image from a code repository.
 * you can use CloudWatch to store logs
 * configure the right permissions
     - Permissions are required for the build project to interact with other AWS services.
-    To add permissions, create an inline policy in the IAM role used by the CodeBuild project. Permissions to interact with ECR eg. PutImage.
+    To add permissions, create an inline policy in the IAM role used by the CodeBuild project. Permissions to interact with ECR eg. `PutImage`.
 * configure the build spec YAML file `buildspec.yml` with the various build steps.
 
 ### Automated CodeBuild process

@@ -34,7 +34,7 @@ When infrastructure is provisioned and managed using code and software developme
 
 ### Monitoring and logging
 
-Enabled organisations to see how applications and infrastructure performance impact the experience of the end user.
+Enables organisations to see how application and infrastructure performance impact the experience of the end user.
 
 ### Deployment strategies
 
@@ -50,7 +50,7 @@ Defines how software is delivered.
 
 * A technique for releasing an application by shifting traffic between 2 identical environments running differing versions of an application
 * Enables launching a new version (green) of an application alongside an old version (blue) to monitor and test before traffic is re-routed
-* minimises downtime and allows rollback
+* Minimises downtime and allows rollback
 
 **Canary deployment**
 
@@ -80,7 +80,7 @@ Benefits include load balancing, protection from attacks, caching, SSL encryptio
 
 ### DNS
 
-A DNS zone is a database containing records. A nameserver (NS) is a DNS server that hosts 1 or more zones. (More on that in the Route53 tab).
+A DNS zone is a database containing records. A nameserver (NS) is a DNS server that hosts 1 or more zones. (More on that in the Route53 chapter).
 
 **DNS query flow:**
 

@@ -4,10 +4,6 @@
 * Is an AWS service that provides implementations of Chef and Puppet. Chef and Puppet are automation platforms that allow you to use code to cofigure servers
 * Use OpsWorks if you are already using Chef or Puppet
 
-**Chef**
-
-**Puppet**
-
 ### OpsWorks modes
 
 OpsWorks functions in 3 modes:
