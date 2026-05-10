@@ -17,58 +17,25 @@ These AWS tools are isolated but they can be configured together using AWS CodeP
 
 A pipeline is linked to 1 branch in a repository eg. a `main` pipeline and a `dev` pipeline.
 
-## CodeDeploy
+## CodeCommit
 
-Is a code deployment as-a-service product. It deploys code not resources i.e. a web application and not a fleet of EC2 instances.
+A source control service that hosts private Git repos. It uses HTTPS and SSH for file transfer; repos are encrypted at rest with AWS KMS.
 
-A CodeDeploy agent needs to be installed which communicates with the product and implements instructions.
+On the backend, it uses S3 and DynamoDB to store repos. It can recieve notifications from Amazon SNS and repos can send notifications with Amazon SNS or invoke AWS Lambda functions.
 
-Can deploy code to:
+## CodeArtifact
 
-* EC2 instances
-* Elastic Beanstalk
-* AWS OpsWorks
-* Amazon ECS
-
-It can be used to deploy using CloudFormation.
-
-### The appspec file
-
-CodeDeploy is customised using `appspec.yml` or `appspec.json` files.
-
-This file contains configuration + lifecycle event hooks.
-
-Lifecycle event hooks such as ApplicationStop, DownloadBundle, BeforeInstall, Install, AfterInstall, ApplicationStart, ValidateService.
-
-The configuration section has:
-
-* files (for EC2/on-premise): provides information to CodeDeploy about which files need to be installed on the EC2 instance during the deployment.
-* resources (for ECS/Lambda): for Lambda it contains the information about the Lambda function used during deployment. For ECS, it contains things like task definitions or container information.
-* permissions (for EC2/on-premise): details any special permissions that need to be applied on parts of the filesystem.
-
-## CodePipeline
-
-Is a continuous delivery tool designed to control the flow from source code through build and finally deployment. It is the glue that holds things together.
-
-Pipelines are built from Stages which contain sequential or parallel actions. The output of one action can be the input of another action.
-
-<div align="center">
-    <img src="./images/code_pipeline.png" alt="CodePipeline" width="500" />
-</div>
-
-CodePipeline can be triggered as follows:
-
-* Pipeline creation: a pipeline gets triggered when created.
-* Put action or changes on objects in the pipeline.
-* CloudWatchEvent trigger: the source action provider here is CodeCommit.
-* Webhook events for 3rd party sources like GitHub, BitBucket, GitLab, etc.
-* Manually triggering the pipeline
+Is a service used to securely store, publish and share software packages. It can be configured to automatically fetch public packages and dependencies.
 
 ## CodeBuild
 
 Is a build-as-a-service product that lets you manage a build environment where you pay for the resources consumed during builds. It is also used during the test stage.
 
-It gets the source code from GitHub, CodeCommit, CodePipeline, S3, etc.
+It is a CI service that can compile source code, run tests and produce software packages ready to deploy. It manages the build servers.
+
+It gets the source code from GitHub, CodeCommit, BitBucket, S3 and GitHub Enterprise and can integrate with open source tools like Jenkins and Spinnaker.
+
+It offers pre-configured environments but also allows customised envs as Docker containers.
 
 Can log output to S3 and CloudWatch Logs. Can also push events to EventBridge.
 
@@ -86,6 +53,46 @@ This file has 4 main phases:
 The build spec file also allows you to define environment variables eg. parameter store or secrets manager variables.
 
 It also contains an artifacts section.
+
+## CodeDeploy
+
+Is a code deployment as-a-service product. It deploys code not resources i.e. a web application and not a fleet of EC2 instances. It automates deployment to compute services like EC2, Fargate, Elastic Beanstalk, Lambda and on-premises servers.
+
+A CodeDeploy agent needs to be installed which communicates with the product and implements instructions.
+
+It can be used to deploy using CloudFormation and it integrates with tools like CodePipeline, GitHub and Jenkins.
+
+### The appspec file
+
+CodeDeploy is customised using `appspec.yml` or `appspec.json` files.
+
+This file contains configuration + lifecycle event hooks.
+
+Lifecycle event hooks such as ApplicationStop, DownloadBundle, BeforeInstall, Install, AfterInstall, ApplicationStart, ValidateService.
+
+The configuration section has:
+
+* files (for EC2/on-premise): provides information to CodeDeploy about which files need to be installed on the EC2 instance during the deployment.
+* resources (for ECS/Lambda): for Lambda it contains the information about the Lambda function used during deployment. For ECS, it contains things like task definitions or container information.
+* permissions (for EC2/on-premise): details any special permissions that need to be applied on parts of the filesystem.
+
+## CodePipeline
+
+Is a continuous delivery tool designed to control the flow from source code through build and finally deployment. It is the glue that holds things together. It is a service used to model, visualise and automate the steps required to release a software.
+
+Pipelines are built from Stages which contain sequential or parallel actions. The output of one action can be the input of another action.
+
+<div align="center">
+    <img src="./images/code_pipeline.png" alt="CodePipeline" width="500" />
+</div>
+
+CodePipeline can be triggered as follows:
+
+* Pipeline creation: a pipeline gets triggered when created.
+* Put action or changes on objects in the pipeline.
+* CloudWatchEvent trigger: the source action provider here is CodeCommit.
+* Webhook events for 3rd party sources like GitHub, BitBucket, GitLab, etc.
+* Manually triggering the pipeline
 
 ## Practical example
 
