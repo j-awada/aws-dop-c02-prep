@@ -1,11 +1,8 @@
-# Lambda
+# AWS Lambda
 
-* FaaS: Function-as-a-Service
-* Part of serverless or event-driven architecture
-* It is stateless i.e. every time the function is invoked, it uses a brand new environment
-* Lambda functions can run for up to 900 seconds ~ 15 minutes
-* Lambda functions assume IAM roles to interact with other AWS resources
-* Lambda is provided an execution role
+Is a Function-as-a-Service (FaaS) and part of serverless or event-driven architecture. It is stateless i.e. every time the function is invoked, it uses a brand new environment.
+
+Lambda functions can run for up to 900 seconds ~ 15 minutes and they assume IAM roles to interact with other AWS resources. Lambda is also provided an execution role.
 
 ### Lambda networking modes
 
