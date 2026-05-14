@@ -9,7 +9,7 @@ It is a global service with a single database i.e. no region is needed on usage.
 
 ## How it works
 
-Route53 has relationships with all of the domain registries eg. `.com`, `.io`, `.net`. And relationships with the PIR organisation for the `.org` registery.
+Route53 has relationships with all of the domain registries eg. `.com`, `.io`, `.net`. And relationships with the PIR (Public Interest Registry) for the `.org` registery.
 
 First Route53 checks with the registry for the top-level domain if the domain is available.
 
@@ -17,7 +17,7 @@ Creates a zone file for the domain being registered. And allocates nameservers f
 
 Zones are called hosted zones in AWS terminology. AWS puts the zone file on the 4 nameservers.
 
-It communicates with the said registry and adds the nameserver (NS) records into the zone file for the `.org` top-level domain using NS records on the `.org` registry. Which then indicates that the 4 nameservers are authoritative for the domain.
+It communicates with said registry and adds the nameserver (NS) records into the zone file for the `.org` top-level domain using NS records on the `.org` registry. Which then indicates that the 4 nameservers are authoritative for the domain.
 
 ## Hosted zones
 
@@ -25,7 +25,7 @@ Zone files are hosted on AWS managed nameservers. A hosted zone on AWS can be pu
 
 ## DNS record types
 
-**A and AAAA**
+### A and AAAA
 
 Given a DNS zone eg. `google.com`, these records map IP addresses to DNS names.
 
@@ -33,17 +33,17 @@ A records map to IP v4 address.
 
 AAAA records map to IP v6 address.
 
-**CNAME**
+### CNAME
 
-Stands for canonical name. Given a zone, the CNAME allows you to create DNS shortcuts or host to host records. It does not point to an IP.
+Stands for canonical name. Given a zone, the CNAME allows you to create DNS shortcuts to host records. It does not point to an IP.
 
 For example, CNAME ftp, CNAME mail and CNAME www all point to an A server record which means they will all resolve to the same IP v4 address.
 
-**TXT**
+### TXT
 
 These records allow you to add arbitrary text to a domain. For example to prove domain ownership.
 
-**MX**
+### MX
 
 It is how a server can find the mail server for a specific domain to connect to via SMTP. It does that via an MX lookup or query.
 
@@ -53,7 +53,7 @@ The value can be a host eg. `mail` which resolves to `mail.mydomain.com` i.e. sa
 
 The value can have a dot at the end `mail.other.domain.` which means it is a fully qualified domain name i.e. can point to the same zone or something outside.
 
-**NS**
+### NS
 
 Allows delegation to occur in DNS. NS records in the organisation registry eg. `.com` point at NS servers managed by AWS that host the zone.
 
@@ -67,19 +67,15 @@ Below is a diagram of walking the tree to get a result from the authoritative so
     <img src="./images/ttl.png" alt="cloud services" width="500" />
 </div>
 
-## R53 Public Hosted Zones
+## Route53 Public Hosted Zones
 
-A hosted zone is a DNS database for a given section of the global DNS database for a domain.
-
-They are created automatically (or manually) when you register a domain.
+A hosted zone is a DNS database for a given section of the global DNS database for a domain. They are created automatically (or manually) when you register a domain.
 
 There is a monthly fee to host a hosted zone and a fee for queries made against the hosted zone.
 
-A zone hosts DNS records.
+A zone hosts DNS records. A public hosted zone is hosted on public nameservers and can be accessible from the public internet and VPCs.
 
-A public hosted zone is hosted on public nameservers and can be accessible from the public internet and VPCs.
-
-## R53 Private Hosted Zones
+## Route53 Private Hosted Zones
 
 It is not public and is associated with VPCs in AWS. It is inaccessible from public internet.
 
@@ -97,7 +93,7 @@ CNAME can not use a naked domain (apex domain) eg. mydomain.io to point at anoth
 
 An ALIAS record is implemented by AWS and maps a name to an AWS resource. ALIAS can use apex domains.
 
-## R53 health checks
+## Route53 health checks
 
 Health checks are configured separately and are used by records. They can be TCP, HTTP/HTTPS and HTTP/HTTPS with String Matching which is a check where a string must appear in the first 5120 bytes of the response body.
 
@@ -165,7 +161,7 @@ Unlike latency routing, it works by distance but also allows you to place bias o
 
 You define a bias if you choose to route more resources to a location.
 
-## R53 interoperability
+## Route53 interoperability
 
 When you register a domain with Route53, it does 2 jobs:
 
