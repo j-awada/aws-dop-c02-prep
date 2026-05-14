@@ -1,5 +1,6 @@
 # Storage
 
 * [Elastic Block Storage](./elastic_block_storage.md)
-* [S3 misc.](./s3_misc.md)
+* [Elastic File System](./efs.md)
+* [S3 Object Storage](./s3_misc.md)
 * [DynamoDB](./dynamodb.md)

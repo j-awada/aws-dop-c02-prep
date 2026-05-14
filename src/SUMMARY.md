@@ -30,7 +30,7 @@
 - [AWS Storage](./storage.md)
     - [Elastic Block Storage](./elastic_block_storage.md)
     - [Elastic File System](./efs.md)
-    - [S3 misc.](./s3_misc.md)
+    - [S3 Object Storage](./s3_misc.md)
     - [DynamoDB](./dynamodb.md)
 - [SNS and SQS](./sns_and_sqs.md)
 - [Content Delivery Network](./cdn.md)

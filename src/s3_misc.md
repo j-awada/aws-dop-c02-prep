@@ -1,4 +1,4 @@
-# S3 misc.
+# S3 Object Storage
 
 ## S3 security
 

@@ -10,11 +10,11 @@ A volume is usually attached to 1 EC2 instance but you can use a multi-attach se
 
 ## EBS volume types
 
-### SSD-based
+### 1. SSD-based
 
 Where it uses flash memory chips (no moving parts).
 
-1. **GP2 (General Purpose SSD)**
+**1.1 GP2 (General Purpose SSD)**
 
 Is good for boot volumes, low-latency interactive applications and dev/test environemnts.
 
@@ -26,7 +26,7 @@ A newly created volume can be as small as 1GB or as large as 16TB. It is created
 
 An IO credit bucket has a capacity of 5.4 million IO credits and fills at the baseline performance rate of the volume.
 
-2. **GP3**
+**1.2 GP3**
 
 Is also SSD-based but removes the credit/bucket architecture used in GP2 for something simpler.
 
@@ -34,7 +34,7 @@ Use case is similar to GP2 i.e. virtual desktops, medium sized single instance d
 
 Every GP3 volume regardless of size starts with 3000 IOPs and 125 MiB transfer per second. More specs come at a higher cost.
 
-3. **IO2 BlockExpress**
+**1.3 IO2 BlockExpress**
 
 Designed for super high performance situation for consistency and low latency.
 
@@ -44,23 +44,19 @@ Can achieve 256,000 IOPs per volume and 4,000 MB/s throughput.
     <img src="./images/storage.png" alt="cloud services" width="500" />
 </div>
 
-### HDD-based (Hard Disk Drive)
+### 2. HDD-based (Hard Disk Drive)
 
-Uses spinning magnetic disks with read/write heads.
+Uses spinning magnetic disks with read/write heads and is cheaper than SSD volumes.
 
-Cheaper than SSD volumes.
+**2.1. st1 (throughput optimised)**
 
-4. **st1 (throughput optimised)**
-
-Is cheap.
-
-Designed for data that is sequentially accessed.
+Is cheap and designed for data that is sequentially accessed.
 
 Range from 125 GB to 16 TB in size.
 
 IO is measured as 1MB block and st1 is capable of max 500 IOPs i.e. 500 MB/s.
 
-5. **sc1 (cold HDD)**
+**2.2 sc1 (cold HDD)**
 
 Is cheaper, lowest cost of EBS volume available.
 
@@ -72,19 +68,13 @@ Range from 125 GB to 16 TB in size.
 
 ## Instance Store volumes
 
-They have higher performance than EBS volumes.
+They have higher performance than EBS volumes where they offer the highest storage performace in AWS because they are locally attached.
 
-They offer the highest storage performace in AWS because they are locally attached.
+They provide temporary block storage devices which are raw volumes that can be attached to instances to be used as a basis for a filesystem. They are local and are not presented over the network.
 
-Provide temporary block storage devices which are raw volumes that can be attached to instances to be used as a basis for a filesystem. They are local and are not presented over the network.
+They are ephemeral and should not be used when persistence is requried. Data is lost if the volume moves, is resized or if there is hardware failure.
 
-They are ephemeral and should not be used when persistence is requried.
-
-They physically connect to 1 EC2 host. Instances on that host can access those volumes. An instance can use more than 1 volume.
-
-They are only attached at launch time.
-
-Data is lost if the volume moves, is resized or if there is hardware failure.
+They physically connect to 1 EC2 host. Instances on that host can access those volumes. An instance can use more than 1 volume. They are only attached at launch time.
 
 ## Storage Gateway
 
@@ -92,30 +82,26 @@ Runs as a virtual machine on premises, it enables hybrid storage between on-prem
 
 It works by installing the storage appliance in your local data centre, it then handles data transfer, encryption and caching. The storage appliance connects to local applications via LAN and to AWS via internet or Direct Connect.
 
-## Types of storage gateway
+### Types of Storage Gateway
 
-**S3 File Gateway**
+**1. S3 File Gateway**
 
 This is best used for object storage, storing unstructured data (images, logs, etc.) in S3. It links on-prem file storage and S3.
 
-Mount points are created locally and are available via 2 protocols NFS (Linux) or SMB (Windows).
-
-Allows 10 bucket shares pre File Gateway.
+Mount points are created locally and are available via 2 protocols NFS (Linux) or SMB (Windows). It allows 10 bucket shares pre File Gateway.
 
 File Gateway does not support object locking in the case of multiple file share to a bucket.
 
-**FSx File Gateway**
+**2. FSx File Gateway**
 
 Used for configuration or file data. Offers low overhead for accessing files.
 
-**Volume Gateway**
+**3. Volume Gateway**
 
 Provides block storage. It provides raw disks over iSCSI connection.
 
-**Tape Gateway**
+**4. Tape Gateway**
 
-Makes it easier to handle backup operations i.e. instead of using physical tapes, you can use virtual tapes.
+Makes it easier to handle backup operations i.e. instead of using physical tapes, you can use virtual tapes. Virtual Tape Library (VTL) stored in S3 buckets.
 
-Virtual Tape Library (VTL) stored in S3 buckets.
-
-Tape Shelf (VTS) stored in Glacier and is generally used for archives where they are not frequently accessed.
+Tape Shelf (VTS) stored in Glacier and is generally used for archives when they are not frequently accessed.
