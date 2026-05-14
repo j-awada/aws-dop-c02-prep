@@ -1,16 +1,14 @@
 # Key Management Service
 
-Is a regional and public service which manages keys both symmetric and asymmetric. It can also perform cryptographic operations. The keys managed never leave KMS.
-
-A KMS key is logical (i.e. similar to a container) and it contains an ID, date, policy, description and state.
-
-A KMS key can encrypt or decrypt data up to 4KB in size.
+Is a regional and public service that manages keys both symmetric and asymmetric. It can also perform cryptographic operations. The keys managed never leave KMS.
 
 By default, keys are created only within a region although multi-region keys can also be created. Those are keys that span multiple regions.
 
+A KMS key is logical (i.e. similar to a container) and it contains an ID, date, policy, description and state. A KMS key can encrypt or decrypt data up to 4KB in size.
+
 ## Data Encryption Keys (DEKs)
 
-Another type of key that KMS can generate. They are generated using a KMS key using the `GenerateDataKey` operation. This generated key can encrypt/decrypt data that is more than 4KB in size.
+These are another type of keys that KMS can generate. They are generated using a KMS key using the `GenerateDataKey` operation. This generated key can encrypt/decrypt data that is more than 4KB in size.
 
 When created, KMS provides a plaintext version of the key as well as a Ciphertext version.
 
