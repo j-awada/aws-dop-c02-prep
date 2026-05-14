@@ -1,5 +1,43 @@
-# About
+## About
 
-This book contains material for preparing for the AWS DevOps Professional (DOP-C02) certificate.
+This book contains material for preparing for the AWS DevOps Professional (DOP-C02) certificate. It is built using Rust's [mdBook](https://rust-lang.github.io/mdBook/).
 
-It is built using Rust's [mdBook](https://rust-lang.github.io/mdBook/).
+## Content
+
+- [Background](./background.md)
+    - [DevOps and cloud](./devops_and_cloud.md)
+    - [OSI Model](./osi_model.md)
+    - [Containers](./containers.md)
+- [Identity and Permissions](./identity_and_permissions.md)
+    - [IAM](./iam.md)
+    - [AWS organisations](./aws_organisations.md)
+    - [Advanced Identity and Permissions](./advanced_identity_and_permissions.md)
+- [SDLC Automation](./sdlc_automation.md)
+- [Cloudformation](./cloudformation.md)
+- [AWS OpsWorks](./aws_opsworks.md)
+- [Serverless](./serverless.md)
+    - [AWS Lambda](./lambda.md)
+    - [Step Functions](./step_functions.md)
+- [Compute](./compute.md)
+    - [Auto-Scaling Group](./asg.md)
+    - [Elasic Beanstalk](./elastic_beanstalk.md)
+    - [Elastic Container Service](./ecs.md)
+- [Routing, balancing and DNS](./routing.md)
+    - [Elastic Load Balancing](./load_balancers.md)
+    - [API Gateway](./api_gateway.md)
+    - [Route53](./route53.md)
+- [AWS Storage](./storage.md)
+    - [Elastic Block Storage](./elastic_block_storage.md)
+    - [S3 misc.](./s3_misc.md)
+    - [DynamoDB](./dynamodb.md)
+- [SNS and SQS](./sns_and_sqs.md)
+- [Credentials and Secrets](./credentials_and_secrets.md)
+- [Key Management Service](./kms.md)
+- [Elastic File System](./efs.md)
+- [Content Delivery Network](./cdn.md)
+- [CloudWatch](./cloudwatch.md)
+- [Kinesis](./kinesis.md)
+- [Security misc](./security_misc.md)
+- [General Disaster Recovery](./general_dr.md)
+- [Disaster Recovery](./dr.md)
+- [Architecture evolution example 1](./ae_example_1.md)
