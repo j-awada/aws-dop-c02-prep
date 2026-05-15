@@ -22,18 +22,18 @@ CloudFront is for download operations only, and uploads are done directly to the
 
 2. Bob creates a CLoudFront distribution. The S3 bucket will be the origin in that distribution.
 
-The distribution will have a unique domain name which ends in `.cloudfront.net` and/or an alternate domain name.
+    The distribution will have a unique domain name which ends in `.cloudfront.net` and/or an alternate domain name.
 
-Bob can then deploy the distribution to the CloudFront network. The configuration will be pushed to edge locations which will cache the content distributed globally as close to the customers as possible.
+    Bob can then deploy the distribution to the CloudFront network. The configuration will be pushed to edge locations which will cache the content distributed globally as close to the customers as possible.
 
-In between the edge locations and the origin are the regional edge caches. These are bigger than the edge locations.
+    In between the edge locations and the origin are the regional edge caches. These are bigger than the edge locations.
 
 3. When customers attempt to access Bob's data, they will be directed towards the closest edge location. The following scenatrios can take place:
 
-* cache hit: the data is on the edge location and is served fast with low latency.
-* cache miss: the edge location missing the data will check the closest regional edge cache.
-    - if the data is there it will be served.
-    - if the data is not there, origin fetch will take place where the data is fetched from the source. The regional edge location pushes the data to the edge location that requested it where the data be be cached there and returned to the user.
+    * Cache hit: the data is on the edge location and is served fast with low latency.
+    * Cache miss: the edge location missing the data will check the closest regional edge cache.
+        - if the data is there it will be served.
+        - if the data is not there, origin fetch will take place where the data is fetched from the source. The regional edge location pushes the data to the edge location that requested it where the data be be cached there and returned to the user.
 
 ## CloudFront Behaviours
 
@@ -61,15 +61,11 @@ Minimum TTL and Maximum TTL can be set using HTTP Headers sent from origin and t
 
 CloudFront integrates with the AWS Certificate Manager (ACM) so SSL certificates can be used with CloudFront.
 
-ACM can generate or import certificates. Generated certificates renew automatically but imported ones need to be renewed manually.
-
-Publicly-trusted certificates and not self-signed are allowed to be used with CloudFront distributions.
+ACM can generate or import certificates. Generated certificates renew automatically but imported ones need to be renewed manually. Publicly-trusted certificates and not self-signed are allowed to be used with CloudFront distributions.
 
 Not all services within AWS are supported by ACM, in general it is CloudFront and ALBs NOT EC2 which is a self-managed service. Because with EC2, you can always access the certificate which is not allowed by ACM.
 
-ACM is a regional service. Certificates are locked to the region they are generated in.
-
-For global services like CloudFront, `us-east-1` is always used for ACM certificates.
+ACM is a regional service. Certificates are locked to the region they are generated in. For global services like CloudFront, `us-east-1` is always used for ACM certificates.
 
 There exists 2 SSL connections:
 
@@ -88,14 +84,12 @@ In 2023, SNI (Serve Name Indication) appeared which is a TLS extention that allo
 
 ## Origin types
 
-Origins are where CloudFront goes to get content Origins are selected from the Behaviour section.
-
-Origins can be:
+Origins are where CloudFront goes to get content. Origins are selected from the Behaviour section and they can be:
 
 * S3 buckets
 * AWS media package channel endpoints
 * AWS media store container endpoints
-* everything else i.e. web servers
+* Everything else i.e. web servers
 
 With S3 as origin, the same protocol is used on the viewer and origin sides.
 
@@ -121,13 +115,13 @@ There are 2 ways around this:
 
 1. Custom headers
 
-Configure CloudFront to send a custom header to the origin. Since this is over HTTPS, the headers are not be visible and can not be immitated.
+    Configure CloudFront to send a custom header to the origin. Since this is over HTTPS, the headers are not be visible and can not be immitated.
 
-If the header is missing, the origin will refuse the request.
+    If the header is missing, the origin will refuse the request.
 
 2. Firewall
 
-Create a firewall around the custom origin to only allow requests from the edge location IP addresses and deny everything else.
+    Create a firewall around the custom origin to only allow requests from the edge location IP addresses and deny everything else.
 
 ## Delivering private content to end users
 
@@ -135,15 +129,15 @@ CloudFront can run in public or private modes. Private mode is achieved in 2 way
 
 1. Signed URLs
 
-When a signer is added to a distribution, it becomes private. Trusted key groups are used to generate signed URLs.
+    When a signer is added to a distribution, it becomes private. Trusted key groups are used to generate signed URLs.
 
-Signed URLS provide access to 1 object.
+    Signed URLS provide access to 1 object.
 
 2. Signed cookies
 
-Cookies provide access to groups of objects and keeps the object URL intact.
+    Cookies provide access to groups of objects and keeps the object URL intact.
 
-The signed cookie is generated via a Lambda function after authentication is done. This cookie is returned back to the user which will use it with the request sent to the CF distribution. Access to resources is then granted.
+    The signed cookie is generated via a Lambda function after authentication is done. This cookie is returned back to the user which will use it with the request sent to the CF distribution. Access to resources is then granted.
 
 ## CloudFront Geo Restriction
 
@@ -153,7 +147,7 @@ It has 2 types:
 
 1. CF Geo Restriction
 
-Is a built-in, whitelist or blacklist architecture. This only works with countries. Uses a GeoIP database with 99.8%+ accuracy.
+    Is a built-in, whitelist or blacklist architecture. This only works with countries. Uses a GeoIP database with 99.8%+ accuracy.
 
 <div align="center">
     <img src="./images/georestriction.png" alt="CF Geo Restriction" width="500" />
@@ -161,9 +155,9 @@ Is a built-in, whitelist or blacklist architecture. This only works with countri
 
 2. Third party Geolocation
 
-Is customisable. You can use this to access 3rd party geolocation services, so it can be more accurate. It can also be used to restrict based on users, browsers, or other and not just geolocation.
+    Is customisable. You can use this to access 3rd party geolocation services, so it can be more accurate. It can also be used to restrict based on users, browsers, or other and not just geolocation.
 
-It works using signed URLs or cookies.
+    It works using signed URLs or cookies.
 
 ## Lambda at the Edge
 
@@ -172,6 +166,6 @@ Allows you to run lightweight Lambda functions at edge locations. They don't hav
 Use cases include:
 
 * A/B testing using a Viewer Request function
-* As part of the Origin request eg. migration betweem S3 origins
+* As part of the Origin request eg. migration between S3 origins
 * Customise behaviour based on the device type of a customer
 * Vary the content displayed by country

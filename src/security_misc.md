@@ -1,3 +1,5 @@
+# Security practices
+
 ## Patch manager
 
 Concepts:
@@ -6,8 +8,6 @@ Concepts:
 * Patch Groups: act as grouping of compute resources i.e. what gets patched.
 * Maintenance Windows: is the configuration item used to tie all this together.
 * Run Command: `AWS-RunPatchbaseline` is defined within the maintenance window and is used to perform the task on the target group.
-* Concurrency and Error Threshold
-* Compliance
 
 ## AWS Inspector
 
@@ -45,11 +45,11 @@ It has 7 core checks that are free at a basic/developer tier:
 
 ## WAF (Web Application Firewall)
 
-Is the AWS implementation of Layer 7 (Application) i.e. it is a firewall capable of understanding HTTP(S).
+Is the AWS implementation of Layer 7 web application firewall; capable of understanding HTTP(S). It helps protect your web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources.
 
 WAF can protect global services like CloudFront but also regional services like ALB (Application Load Balancer).
 
-WEB ACL is associated with a WAF distribution and has Rules and Rule Groups that control how the WAF reacts.
+Web ACL is associated with a WAF distribution and has Rules and Rule Groups that control how the WAF reacts.
 
 ## AWS Network Firewall
 
