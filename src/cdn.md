@@ -103,7 +103,7 @@ How to make sure that a customer does not bypass CloudFront to access data in th
 
 ### OAI (Origin Access Identity)
 
-This is only applicable to S3 origins and not S3 static websites used as origin.
+CloudFront Origin Access Identity (OAI) is an AWS feature that links CloudFront to a private S3 bucket. It is only applicable to S3 origins and not S3 static websites used as origin.
 
 Is a type of identity that can be associated with a CloudFront distribution where when the distribution is trying to access data, it becomes the OAI.
 
