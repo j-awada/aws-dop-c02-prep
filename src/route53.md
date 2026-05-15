@@ -53,7 +53,7 @@ The value can be a host eg. `mail` which resolves to `mail.mydomain.com` i.e. sa
 
 The value can have a dot at the end `mail.other.domain.` which means it is a fully qualified domain name i.e. can point to the same zone or something outside.
 
-### NS
+### NS
 
 Allows delegation to occur in DNS. NS records in the organisation registry eg. `.com` point at NS servers managed by AWS that host the zone.
 

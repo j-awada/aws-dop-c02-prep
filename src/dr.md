@@ -4,21 +4,19 @@
 
 DR is based on different types of storage that in turn have different levels of resiliency.
 
-**1. Instance store volumes**
+### 1. Instance store volumes
 
-Those are physical storage attached to EC2 hosts that can run EC2 instances.
+Those are physical storage attached to EC2 hosts that can run EC2 instances. This is viewed as temporary and unreliable storage.
 
-This is viewed as temporary and unreliable storage.
+### 2. EBS: Elastic Block Store
 
-**2. EBS: Elastic Block Store**
+Allows creating volumes that can be presented to EC2 instances. Those are not replicated across AZs.
 
-Allows creating volumes that can presented to EC2 instances. Those are not replicated across AZs.
-
-**3. S3: Simple Storage Service**
+### 3. S3: Simple Storage Service
 
 This is replicated across multiple AZs in a region. So you can create a snapshot of an EBS volumes and store that in an S3 bucket.
 
-**4. EFS: Elastic File System**
+### 4. EFS: Elastic File System
 
 This is replicated across multiple AZs in a single region. It can tolerate the failure of an AZ.
 
@@ -30,39 +28,39 @@ This is replicated across multiple AZs in a single region. It can tolerate the f
 
 There are no truely global compute services available from AWS. So the focus for compute will be in 1 particular region.
 
-**1. EC2**
+### 1. EC2
 
 EC2 instances are not too reliable since they are meant to exist in 1 AZ and there is always a chance that the EC2 host they run on fails. If it is a host failure, the EC2 instance can be recreated in the same region on a new host.
 
 An ASG (Auto Scaling Group) can be set to run between 2 AZs. This increases reliability.
 
-**2. ECS**
+### 2. ECS
 
 ECS (Elastic Container Service) clusters can be in EC2 mode or Fargate mode. In EC2 mode, they have DR characteristics same as EC2 i.e. AZ failure means ECS container host failure.
 
 ECS in Fargate mode achieve similar characteristics as ASG i.e. the architecture can span across 2 AZs.
 
-**3. Lambda**
+### 3. Lambda
 
 Lambda is not a VPC-based service and can run in private or public mode (default). It would take the failure of an entire region to affect the service of a Lambda function.
 
 ## Database DR
 
-**1. Custom DB**
+### 1. Custom DB
 
 A custom database running on an EC2 instance will have resiliency level dependant on the EC2 host and AZ. Snapshotting the database improves resiliance.
 
-**2. DynamoDB**
+### 2. DynamoDB
 
 DynamoDB is a public database replicated between multiple nodes in multiple AZs. A DynamoDB database is affected by an entire AWS region failing. This means that it is a highly resiliant service and no DR measures are needed at a regional level.
 
-**3. RDS**
+### 3. RDS
 
 RDS instances can run across multiple subnets in multiple AZs. There are typically primary and standby instances with their own storage each pair existing in an AZ.
 
 RDS offers cross-region read replicas but this places a load on the RDS instances since replication is not done at the storage layer.
 
-**4. Aurora**
+### 4. Aurora
 
 Aurora is not limited to primary and standby instances, it can have 1 or more replicas in every AZ. This makes it's availability subject to the number of AZs in the region.
 

@@ -1,8 +1,6 @@
 # CloudWatch
 
-Is a public service to ingest, store and manage logging data.
-
-It supports native ingests of logs from AWS services. The CloudWatch agent can be installed to bring in logs from systems or custom applications.
+Is a public service to ingest, store and manage logging data. It supports native ingests of logs from AWS services. The CloudWatch agent can be installed to bring in logs from systems or custom applications.
 
 ## Log event
 

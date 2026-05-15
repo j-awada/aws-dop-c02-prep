@@ -1,8 +1,6 @@
 # Kinesis
 
-Is a scalable realtime streaming service designed to ingest data from lots of devices or applications.
-
-Producers send data to Kinesis eg. EC2, IoT, applications, etc.
+Is a scalable realtime streaming service designed to ingest data from lots of devices or applications. Producers send data to Kinesis eg. EC2, IoT, applications, etc.
 
 The Kinesis stream ingests the data and the Consumers consume this data.
 
@@ -12,17 +10,13 @@ The stream starts with 1 shard and increases the number of shards as it scales. 
 
 Is a fully-managed service that delivers data to supported services like S3 allowing data to be persisted beyond the rolling window of Kinesis data streams.
 
-It is a near-realtime service where data of size 1MB is buffered for 60 secs before delivery.
+It is a near-realtime service where data of size 1MB is buffered for 60 seconds before delivery.
 
-Data Firehose can deliver data to HTTP endpoints, Splunk, Redshift, ElasticSearch and S3.
-
-Firehose can transform data using Lambda before delivering it.
+Data Firehose can deliver data to HTTP endpoints, Splunk, Redshift, ElasticSearch and S3. Firehose can transform data using Lambda before delivering it.
 
 ## Amazon Kinesis Data Analytics
 
-Is a service that provides realtime processing of data which flows through it using SQL.
-
-It ingests from Kinesis Data Streams or Firehose.
+Is a service that provides realtime processing of data which flows through it using SQL. It ingests from Kinesis Data Streams or Firehose.
 
 The destination for the data can be Streams, Firehose or any of the services that Firehose supports.
 
@@ -44,9 +38,7 @@ The EMR cluster architecture consists of:
 
 Is a petabyte-scale data warehouse where many different operational databases from across your business can pump data into for long-term analysis. It is designed for reporting and analytics not for operational-style usage.
 
-It is an OLAP (column-based) database and not OLTP (row/transaction).
-
-It lives in 1 AZ in a VPC. It includes a leader node and a compute node.
+It is an OLAP (column-based) database and not OLTP (row/transaction). It lives in 1 AZ in a VPC. It includes a leader node and a compute node.
 
 It includes some useful features like:
 
@@ -65,7 +57,7 @@ It uses a process called schema-on-read which modifies data in-flight as it's re
 
 ## Streaming data to OpenSearch (formerly ElasticSearch)
 
-You can stream data into OpenSearch from any service in AWS. Some services like Amazon Data Firehose and CloudWatch Logs have built-in support. Other services like Amazon S3, Kinesis Data Streams and Amazon DynamoDB use AWS Lambda functions as event handlers. [Image source: Tutorialsdojo.com]
+You can stream data into OpenSearch from any service in AWS. Some services like Amazon Data Firehose and CloudWatch Logs have built-in support. Other services like Amazon S3, Kinesis Data Streams and Amazon DynamoDB use AWS Lambda functions as event handlers.
 
 <div align="center">
     <img src="./images/opensearch.jpg" alt="opensearch" width="500" />
