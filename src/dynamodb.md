@@ -1,10 +1,8 @@
 # DynamoDB
 
-Is a no-SQL, wide-column database as a service product. It is a public service that can handle key/value and document data.
+Is a no-SQL, wide-column database as a service product. It is a public service that can handle key/value and document data. It is highly resilient across AZs and optionally globally. It is fast and is SSD-based.
 
-It is highly resilient across AZs and optionally globally. It is fast and is SSD-based.
-
-It allows backups an data is encrypted at rest. It supports event-driven integration.
+It allows backups and data is encrypted at rest. It supports event-driven integration.
 
 ## DynamoDB tables
 
@@ -14,7 +12,7 @@ A primary key can be simple (Partition) aka `pk` or composite which is a combina
 
 ## Point-in-time Recovery (PITR)
 
-Is disabled by default and needs to be enabled on a table-by-table basis. It allows for a 35 day recovery window.
+Is disabled by default and needs to be enabled on a table-by-table basis. It allows for a 35-day recovery window.
 
 ## Access
 
@@ -24,9 +22,9 @@ DynamoDB can be accessed via the console, CLI or API.
 
 2 capacity modes:
 
-* on-demand: managed by AWS.
+1. On-demand: managed by AWS.
 
-* provisioned: by specifying the RCU (read capacity unit) and WCU (write capacity unit) on a per table basis.
+2. Provisioned: by specifying the RCU (read capacity unit) and WCU (write capacity unit) on a per table basis.
 
 Every operation consumes at least 1 RCU/WCU with a max of 4KB per RCU and 1KB for WCU.
 

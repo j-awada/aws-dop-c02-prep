@@ -2,41 +2,29 @@
 
 ## S3 security
 
-S3 is private by default.
+S3 is private by default. An S3 bucket policy is a form of resource policy; it is like identity policies but attached to a bucket. Bucket policies can be complex for eg. denying access to an IP address range.
 
-An S3 bucket policy is a form of resource policy; it is like identity policies but attached to a bucket.
-
-Bucket policies can be complex for eg. deny access to an IP address range / if the identity using the bucket does not use MFA.
-
-**Access Control Lists (ACLs)**
-
-Are legacy and not recommended to use by AWS but they are used to apply security to objects or buckets.
+Access Control Lists (ACL) are legacy and not recommended for use by AWS but they are used to apply security to objects or buckets.
 
 ## S3 static website hosting
 
-It allows access via standard HTTP by individuals using a web browser.
-
-When you enable this, you have to set an index and an error document.
+It allows access via standard HTTP by individuals using a web browser. When you enable this, you have to set index and error pages.
 
 ## S3 bucket object versioning
 
-By default, this is disabled. Once enabled, it can not be disabled again. The bucket however can be suspended and the versions deleted then re-enabled.
-
-Versioning lets you store multiple versions of an object in a bucket.
+Versioning lets you store multiple versions of an object in a bucket. By default, this is disabled. Once enabled, it can not be disabled again. The bucket however can be suspended and the versions deleted then re-enabled.
 
 An object has a key (name) and an ID (used for versioning). When versioning is disabled, the ID is null. But when versioning is enabled and an object is accessed without specifying an ID, the latest object is assumed.
 
-When an object is deleted without specifying a version, a Delete Marker is added which is a special version of an object which hides all previous versions of that object. The Delete Marker can be deleted and the object can be active again.
-
-To fully delete an object, you need to specify a version.
+When an object is deleted without specifying a version, a Delete Marker is added which is a special version of an object that hides all previous versions of that object. The Delete Marker can be deleted and the object can be active again. To fully delete an object, you need to specify a version.
 
 ## S3 bucket upload
 
-By default, data is uploaded to S3 in a single blob of data in a **single stream**. A file is uploaded using the `s3:PutObject` action and put into a bucket.
+By default, data is uploaded to S3 in a single blob of data in a **single stream**. A file is uploaded using the `s3:PutObject` action and put into a bucket. But if a stream fails, the upload fails and nothing is uploaded.
 
-But if a stream fails, the upload fails and nothing is uploaded. And a PUT upload is limited to 5GB of data in a single stream.
+A `PUT` upload is limited to 5GB of data in a single stream.
 
-**Multipart upload** however improves the speed and reliability of uploads to S3. It does this by breaking data down into various blobs. The minimum size of the data uploaded should be 100MB.
+**Multipart upload** improves the speed and reliability of uploads to S3. It does this by breaking data down into various blobs. The minimum size of the data uploaded should be 100MB.
 
 An upload can be split into a max of 10,000 parts and each part can range in size from 5MB to 5GB. Unlike single stream upload, each part can fail in isolation and restart in isolation. Transfer rate; which is the speed of all parts, is therefore improved.
 
@@ -46,7 +34,7 @@ Data can take inefficient routes to reach its destination especially if travelli
 
 Transfer acceleration for S3 uses the network of AWS edge locations located globally in convenient locations. This is by default switched off and needs to be enabled given certain restrictions.
 
-The AWS network is purposely build to connect regions with one another.
+The AWS network is purposely built to connect regions with one another.
 
 ## S3 server-side encryption
 
@@ -54,11 +42,11 @@ Buckets are not encrypted, objects are. Objects can use different encryption set
 
 Knowing that data to and from S3 is encrypted in transit, encryption at rest i.e. how data is stored on disk can be:
 
-**client-side encryption:**
+### Client-side encryption
 
 Data is encrypted at the client side and S3 receives data that is already encrypted. The client is responsible for the encryption keys and for the encryption process. Here, S3 is just used for storage.
 
-**server-side encryption:**
+### Server-side encryption
 
 Data is not encrypted on the client side but when it reaches S3 it gets encrypted. FYI encryption at rest is mandatory on S3.
 
@@ -66,15 +54,15 @@ Serve-side encryption for S3 objects has 3 types:
 
 1. SSE-C (server-side encryption with customer-provided keys)
 
-The customer is responsible for the keys but S3 handles the cryptographic operation.
+    The customer is responsible for the keys but S3 handles the cryptographic operation.
 
 2. SSE-S3 (server-side encryption with Amazon S3-managed keys)
 
-This is the default. S3 provides the key and the encryption process.
+    This is the default. S3 provides the key and the encryption process.
 
 3. SSE-KMS (server-side encryption with KMS keys stored in AWS KMS)
 
-Here, the KMS service is involved. The client has control over the KMS key. S3 handles the encryption process.
+    Here, the KMS service is involved. The client has control over the KMS key. S3 handles the encryption process.
 
 ## S3 bucket keys
 
@@ -86,7 +74,7 @@ With bucket keys, instead of the KMS key being used to generate many data encryp
 
 ## Object storage classes
 
-**1. S3 Standard**
+### 1. S3 Standard
 
 This is the default class where objects are replicated across at least 3 AZs. It can cope with AZ failure. It provides 11 nines (9s) of durability. The replication uses Content-MD5 Checksums and Cyclic Redundancy Checks (CRCs) to detect and fix any data corruption.
 
@@ -94,35 +82,31 @@ Billing is 1 GB per month fee for data stored. A $ per GB charge for transfer OU
 
 This class should be used for frequently accessed data which is important and non-replaceable.
 
-**2. S3 Standard-IA (infrequent access)**
+### 2. S3 Standard-IA (infrequent access)
 
 Shares most of the architecture of S3 Standard however it is much cheaper than S3 Standard.
 
-It has a retrieval fee per GB of data, it is therefore designed for minimally accessed data.
+It has a retrieval fee per GB of data, it is therefore designed for minimally accessed data. This class should be used for long-lived data which is important but where access is infrequent.
 
-It has a minimum duration charge of 30 days.
-
-This class should be used for long-lived data which is important but where access is infrequent.
-
-**3. S3 One Zone-IA**
+### 3. S3 One Zone-IA
 
 This is cheaper than Standard and Standard-IA but with some compromise.
 
-Shares most of the features of Standard-IA but data is not replicated and is stored in 1 AZ only.
+It shares most of the features of Standard-IA but data is not replicated and is stored in 1 AZ only.
 
 This class should be used for long-lived data which is not critical and replaceable and where access is infrequent.
 
-**4. S3 Glacier Instant Retrieval**
+### 4. S3 Glacier Instant Retrieval
 
 Is like S3 Standard-IA but has cheaper storage, more expensive retrieval and longer minimum storage duration of 90 days instead of 30.
 
 Although it costs more to access the data, instant data access is still an option here.
 
-**5. S3 Glacier Flexible Retrieval**
+### 5. S3 Glacier Flexible Retrieval
 
 This allows storing data in a chilled state.
 
-Similar to S3 Standard but with a storage cost 1 sixth of the cost of S3 Standard. It is therefore cost-effective but with some tradeoff.
+Similar to S3 Standard but with a storage cost 1 sixth of the cost of S3 Standard. It is therefore cost-effective but with some tradeoffs.
 
 Objects stored here are cold and not immediately available. Objects cannot be made publicly available and to gain access, a retrieval operation needs to be performed.
 You pay for object retrieval and they are stored in the S3 Standard class on a temporary basis. They are removed once accessed.
@@ -133,7 +117,7 @@ Some limitations here are a 40KB minimum billable size and a 90 day minimum bill
 
 This class is ideal for archival data where frequent or real-time access is not needed.
 
-**6. S3 Glacier Deep Archive**
+### 6. S3 Glacier Deep Archive
 
 Is the cheapest storage class and allows storing data in frozen state. It also has 40KB minimum billable size and 180 day minimum billable duration.
 
@@ -143,7 +127,7 @@ Data is temporarily retrieved to S3 Standard-IA which takes 12 hours and Bulk up
 
 First byte latency is in hours or days.
 
-**7. S3 Intelligent-Tiering**
+### 7. S3 Intelligent-Tiering
 
 Is a storage class that contains 5 different storage tiers:
 
@@ -185,11 +169,11 @@ A duration of 30 days is required if objects were to transition further from IA 
 
 Replicating objects between a source and destination S3 bucket. 2 types of replication are supported by S3:
 
-1. Cross-Region Replication (CRR)
+### Cross-Region Replication (CRR)
 
 Allows replication of objects from a source bucket to 1 or more destination buckets in different AWS regions.
 
-2. Same-Region Replication (SRR)
+### Same-Region Replication (SRR)
 
 The same process but where the source and destination buckets are in the same region.
 
@@ -200,17 +184,17 @@ Replication between bucket of the same account do not need this policy because t
 
 You can replicate all objects or a subset and you can choose the storage class to be used. You can also define ownership of the objects eg. owned by the account of the destination bucket. You can also define a Replication Time Control (RTC) between the source and destination bucket.
 
-### Notes in replication
+### Notes around replication
 
-By default, replication is not retroactive i.e. objects that were already there are not replicated. Batch replication can be used to replicate existing objects.
+* By default, replication is not retroactive i.e. objects that were already there are not replicated. Batch replication can be used to replicate existing objects.
 
-Versioning needs to be ON on both source and destination buckets.
+* Versioning needs to be ON on both source and destination buckets.
 
-Replication is one-way and is not bi-directional.
+* Replication is one-way and is not bi-directional.
 
-Replication is able to handle objects that are unencrypted, SSE-S3, SSE-KMS and SSE-C.
+* Replication is able to handle objects that are unencrypted, SSE-S3, SSE-KMS and SSE-C.
 
-Replication can not happen on objects in Glacier or Glacier Deep Archive.
+* Replication can not happen on objects in Glacier or Glacier Deep Archive.
 
 ## S3 Pre-signed URLs
 
@@ -230,6 +214,7 @@ The unauthenticated user using the pre-signed URL interacts with the object as t
 ## S3 Select and Glacier Select
 
 These 2 services can store objects with huge size (up to 5TB). Sometimes you do not want to retrieve an entire object and you want to instead filter it on the bucket side. S3 and Glacier Select services allow you to create a SQL-like statement to retrieve partial objects.
+
 The S3 service can use the SQL-like statement and apply it to the raw data in S3 to filter it down.
 
 File formats include CSV, JSON, Parquet BZIP2 compression for CSV and JSON.
@@ -246,7 +231,7 @@ EventBridge is an alternative and it supports more types of events and more serv
 
 Helps understand what types of accesses are occurring on a source bucket. The logs are stored in a target bucket.
 
-This feature needs to be enabled on the source bucket. Loggin is managed by a system called the S3 Log Delivery Groups. This group needs to be given access to the target bucket via an ACL.
+This feature needs to be enabled on the source bucket. Log-in is managed by a system called the S3 Log Delivery Groups. This group needs to be given access to the target bucket via an ACL.
 
 ## S3 Object Lock
 
@@ -256,23 +241,21 @@ Object Lock implements a Write-Once-Read-Many (WORM) architecture where objects 
 
 Has 2 types:
 
-1. S3 object lock retention
+### 1. S3 object lock retention
 
 When you create the object lock, you specify the retention period in days or years.
 
 This has 2 modes:
 
-* Compliance mode: an object can not be adjusted deleted or overwritten during the retention period. And no change is possible to the retention period settings.
-
-Eg. used for medical or financial data.
+* Compliance mode: an object can not be adjusted deleted or overwritten during the retention period. And no change is possible to the retention period settings. Eg. used for medical or financial data.
 
 * Governance mode: same, but special permissions can be granted to allow lock settings to be adjusted. This is done using this permission `s3:BypassGovernanceRetention`.
 
-2. S3 object local legal hold
+### 2. S3 object local legal hold
 
 A retention period is not set here and instead legal hold is set to be ON or OFF. There is no concept of retention.
 
-Here you can not delete ot change the object version. The `s3:PutObjectLegalHold` permission allows you to add or remove the legal hold feature.
+Here you can not delete or change the object version. The `s3:PutObjectLegalHold` permission allows you to add or remove the legal hold feature.
 
 <div align="center">
     <img src="./images/s3-object-lock.png" alt="s3 object lock" width="500" />
@@ -280,16 +263,10 @@ Here you can not delete ot change the object version. The `s3:PutObjectLegalHold
 
 ## S3 Access Points
 
-Features that improves the accessibility of S3 buckets, it simplifies the access to S3 buckets and objects.
-
-Every access point can have an endpoint and can be used from within different networks.
-
-Extra reading: https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies
+Features that improves the accessibility of S3 buckets, it simplifies the access to S3 buckets and objects. Every access point can have an endpoint and can be used from within different networks.
 
 ## S3 Inventory
 
 Helps you manage your storage within S3 buckets. Can be configured to generate inventory reports based on a specific frequency, eg. daily or weekly.
 
-Output is generated in 1 of these 3 formats: CSV, ORC, Parquet.
-
-The reports are stored in the target bucket.
+Output is generated in 1 of these 3 formats: CSV, ORC, Parquet. The reports are stored in the target bucket.
