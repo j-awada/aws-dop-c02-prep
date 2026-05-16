@@ -29,7 +29,7 @@
 - [Secrets and Keys](./secrets_and_keys.md)
     - [Credentials and Secrets](./credentials_and_secrets.md)
     - [Key Management Service](./kms.md)
-- [Security practices](./security_misc.md)
+- [Security practices and automation](./security_misc.md)
 - [AWS Storage](./storage.md)
     - [Elastic Block Storage](./elastic_block_storage.md)
     - [Elastic File System](./efs.md)

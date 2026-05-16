@@ -1,8 +1,16 @@
-# Security practices
+# Security practices and automation
 
-## Patch manager
+## AWS Systems Manager (SSM)
 
-Concepts:
+Can be used to configure, schedule, automate and execute operations on AWS resources. Resources include IAM users, groups and roles as well as Lambda functions, EC2 ASG and S3 buckets.
+
+To use SSM, the host needs to have the SSM-agent installed along with proper IAM permissions.
+
+SSM can automate common and repetitive IT operations and management tasks across AWS resources. This can be done using JSON documents or on-demand using the `RUN` command.
+
+SSM allows managing instances at scale without the need for bastions, SSH or remote sessions.
+
+### Patch manager
 
 * Patch Baseline: defines what patches get installed according to operating system and distribution.
 * Patch Groups: act as grouping of compute resources i.e. what gets patched.
