@@ -8,9 +8,17 @@ To use SSM, the host needs to have the SSM-agent installed along with proper IAM
 
 SSM can automate common and repetitive IT operations and management tasks across AWS resources. This can be done using JSON documents or on-demand using the `RUN` command.
 
+### Session Manager
+
 SSM allows managing instances at scale without the need for bastions, SSH or remote sessions.
 
+### State Manager
+
+Enables configuration management such that EC2 instances or on-prem instances are consistently configrued.
+
 ### Patch manager
+
+Allows applying OS or software patches to a large group of EC2 or on-prem instances.
 
 * Patch Baseline: defines what patches get installed according to operating system and distribution.
 * Patch Groups: act as grouping of compute resources i.e. what gets patched.
