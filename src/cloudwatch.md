@@ -18,6 +18,12 @@ Retention, access permissions and encryption are set on the log group level.
 
 A metric filter can also be defined on a log group and it looks for patterns in the log streams eg. a failed login attempt or an application crash. This allows creating metrics to that specific filter eg. the total failed login attempts which can trigger an alarm that can send notifications etc.
 
+# EventBridge
+
+Is a serverless, fully managed and scalable event bus that enables integrations between AWS services and other applications. EventBridge was formerly called CloudWatch Events.
+
+It makes it easier to connect applications such that events can be ingested, filtered, transformed and delivered without writing custom code.
+
 # CloudTrail
 
 This product logs API calls or account activities as CloudTrail Events that are either management events or data events. By default, stores 90 day management event history. Data events need to be enabled and they come at an extra cost.
