@@ -40,3 +40,4 @@
 - [Kinesis](./kinesis.md)
 - [Disaster Recovery](./dr.md)
 - [Architecture evolution example 1](./ae_example_1.md)
+- [Final exam notes](./final_exam_notes.md)
