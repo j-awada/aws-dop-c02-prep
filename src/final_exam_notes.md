@@ -2,23 +2,17 @@
 
 ## CI/CD
 
+### CodeBuild
+
 * For the CodeBuild service to properly download encrypted files from an S3 bucket, the CodeBuild service should have the right role permissions for the KMS key used for encryption.
-
-* To verify the health of a Fargate application, look for CodeDeploy successfully deploying as well as no errors in the CloudWatch alarms.
-
-* For a CI/CD pipeline to deploy resources in multiple AWS accounts, create a cross-account IAM role in the target account that trusts the pipeline account. Also update the pipeline to assume the cross-account role in the target account.
-
-* To prevent accidental _replacement_ of an RDS instance during a CloudFormation stack update, use CloudFormation Stack Policy to prevent updating the database.
-
-* Terraform is cloud-agnostic and supports multiple providers incl. AWS, Azure and on-prem. It's the most flexible IaC tool in hybrid cloud or multi-cloud scenarios.
-
-* Terraform workspaces can isolate environments and `assume_role` allows secure cross-account access using STS.
-
-* Manual approval actions pause a CodePipeline pipeline such that a human can approve a release to prod.
 
 * CodeBuild supports local caching of dependency directories (eg. `.npm`, `pip`) to speed up builds by avoiding redownloading packages.
 
-* AWS CloudTrail records API-level actions including pipeline stage executions, approvals and deployment events enabling full auditability of the CI/CD flow.
+* Parameter masking in CodeBuild redacts environment variables marked as secrets, preventing them from being displayed in logs or console output.
+
+### CodeDeploy
+
+* To verify the health of a Fargate application, look for CodeDeploy successfully deploying as well as no errors in the CloudWatch alarms.
 
 * A pre-traffic hook in a blue/green CodeDeploy deployment allows you to run logic (eg. tests or config checks) before shifting any traffic to the new environment.
 
@@ -26,21 +20,44 @@
 
     Rolling deployments divide EC2 instances into batches, updating them incrementally to ensure that the application remains available during the rollout.
 
+* Registering on-prem servers with CodeDeploy:
+    - Create an IAM role that the on-prem instances will assume
+    - Generate temporary credentials for individual instances using AWS STS
+    - Set up a Cron job to refresh those credentials regularly
+    - Install CodeDeploy agent on the on-prem servers
+    - Register the on-prem servers with CodeDeploy
+    - Create tags for the on-prem servers
+    - Set up a deployment group based on the tags
+
+### CodePipeline
+
+* For a CI/CD pipeline to deploy resources in multiple AWS accounts, create a cross-account IAM role in the target account that trusts the pipeline account. Also update the pipeline to assume the cross-account role in the target account.
+
+* Manual approval actions pause a CodePipeline pipeline such that a human can approve a release to prod.
+
+* AWS CloudTrail records API-level actions including pipeline stage executions, approvals and deployment events enabling full auditability of the CI/CD flow.
+
 * Canary deployment helps minimise risk by routing a small portion of the traffic to the new version before scaling up.
 
-* Codepipeline offers a feature to retry individual failed stages allowing developers to fix and resume deployments without re-running the full pipeline workflow.
+* CodePipeline offers a feature to retry individual failed stages allowing developers to fix and resume deployments without re-running the full pipeline workflow.
 
-* Parameter masking in CodeBuild redacts environment variables marked as secrets, preventing them from being displayed in logs or console output.
+* CodePipeline integrates with external systems using SNS or Lambda allowing teams to implement Slack, Jira or custom approval workflows between pipeline stages.
+
+* CodePipeline can only have one source stage. To trigger CodePipeline when code is pushed in more than 1 repo, an EventBridge rule can be created for each repo that can trigger the same CodePipeline.
+
+### IaC
+
+* To prevent accidental _replacement_ of an RDS instance during a CloudFormation stack update, use CloudFormation Stack Policy to prevent updating the database.
+
+* Terraform is cloud-agnostic and supports multiple providers incl. AWS, Azure and on-prem. It's the most flexible IaC tool in hybrid cloud or multi-cloud scenarios.
+
+* Terraform workspaces can isolate environments and `assume_role` allows secure cross-account access using STS.
 
 * Remote state locking in Terraform prevents simultaneous apply operations from different sources avoiding race condition and corrupted infrastructure state.
 
 * To scan IaC templates for security misconfigurations before deployment, use static analysis tools like tfsec (Terraform) and cfn-nag (CloudFormation) to scan for vulnerabilities, missing encryption, open ports or IAM risks.
 
 * During IaC migration, the Terraform `import` command lets you bring manually created or existing AWS resources under Terraform management without recreating or destroying them.
-
-* CodePipeline integrates with external systems using SNS or Lambda allowing teams to implement Slack, Jira or custom approval workflows between pipeline stages.
-
-* CodePipeline can only have one source stage. To trigger CodePipeline when code is pushed in more than 1 repo, an EventBridge rule can be created for each repo that can trigger the same CodePipeline.
 
 ## Lambda
 
@@ -74,6 +91,12 @@ A StackSet is like a stack but it deploys accross multiple regions and accounts.
 
 * Route53 health checks with latency routing provide automated failover and route users to the nearest healthy region.
 
+* Note that AWS Config evaluates periodically and not in real-time. It continuously evaluates resources against rules. It triggers automatic remediation using an SSM Automation document.
+
+* AWS Config can not be used to perform emergency maintenance on instances.
+
+* To ensure that an application does not experience downtime during database credentials rotation, a multi-user rotation strategy is used where the Secrets Manager creates 2 database users and alternates between them during rotation.
+
 ## Security
 
 * For a web app to maintain performance during a DDoS attack, CloudFront with WAF can be used to filter malicious traffic.
@@ -97,3 +120,5 @@ A StackSet is like a stack but it deploys accross multiple regions and accounts.
 * VPC Flow Logs is a feature that can be enabled on a VPC, subnet or Elastic Network Interface (ENI) so that network traffic can be logged to CloudWatch Logs.
 
 * To improve observability, use X-Ray and OpenTelemetry (OTel) which provide deep observability for distributed services and improve trace analysis.
+
+* In case of a custom application metric that is not supported natively in CloudWatch but needs to be monitored, the metric can be published from the application using the CloudWatch `PutMetricData` API.
