@@ -29,6 +29,8 @@
     - Create tags for the on-prem servers
     - Set up a deployment group based on the tags
 
+* CodeDeploy is not a destination for SNS messages. However a deployment group can be configured to monitor an alarm. If the alarm enters the ALARM state, the deployment will automatically fail and roll back.
+
 ### CodePipeline
 
 * For a CI/CD pipeline to deploy resources in multiple AWS accounts, create a cross-account IAM role in the target account that trusts the pipeline account. Also update the pipeline to assume the cross-account role in the target account.
@@ -73,6 +75,12 @@
 
 A StackSet is like a stack but it deploys accross multiple regions and accounts.
 
+## S3
+
+* S3 Event Notifications: is a feature to receive notifications when certain events happen in the S3 bucket.
+
+* S3 Lifecycle policy configuration or rules allow you to define actions that you want S3 to take during an object's lifetime eg. deleting objects after a period of time.
+
 ## Automation
 
 * To manage security patches for EC2 instances and on-prem servers, install the AWS Systems Manager agent and create a Hybrid Activation.
@@ -97,11 +105,17 @@ A StackSet is like a stack but it deploys accross multiple regions and accounts.
 
 * To ensure that an application does not experience downtime during database credentials rotation, a multi-user rotation strategy is used where the Secrets Manager creates 2 database users and alternates between them during rotation.
 
+* A Lifecycle hook can be used to provide feedback to the auto-scaling group about the success or failure of a custom script. The ASG uses this information to either start sending traffic to the new EC2 instance or to terminate it.
+
+* Elastic Beanstalk configuration files `.ebextensions` have higher precendence than default values. Values that are specified as arguments to the EB CLI cannot be overriden by `.ebextensions` file.
+
+    Instance type (aka flavor) can be overwritten by the `.ebextensions` file.
+
 ## Security
 
 * For a web app to maintain performance during a DDoS attack, CloudFront with WAF can be used to filter malicious traffic.
 
-## Observability
+## Monitoring and Logging
 
 * Memory metrics are not available by default in CloudWatch for EC2 instances. A CloudWatch agent must be installed and configured on the instance to obtain internal metrics like memory utilisation, disk usage, process health, etc.
 
@@ -122,3 +136,13 @@ A StackSet is like a stack but it deploys accross multiple regions and accounts.
 * To improve observability, use X-Ray and OpenTelemetry (OTel) which provide deep observability for distributed services and improve trace analysis.
 
 * In case of a custom application metric that is not supported natively in CloudWatch but needs to be monitored, the metric can be published from the application using the CloudWatch `PutMetricData` API.
+
+* CodeGuru Profiler collects runtime performance data from live applications and provides recommendations to help improve the code to improve performance. It focusses on code optimisation.
+
+* CodeGuru Reviewer uses program analysis and ML to detect potential defects and issues in the code. It also provides guidelines for best practices in Java and Python code.
+
+    CodeGuru Reviewer should be associated with a Git repo and is not integrated with CodeBuild.
+
+* EventBridge can monitor AWS service events such as EC2 instance state changes. A rule in EventBridge can be set up that matches specific EC2 state changes, matching events can then be routed to a Lambda function.
+
+* SNS integrates directly with CloudWatch alarms. Alarms can trigger SNS to notify teams instantly.
