@@ -14,7 +14,7 @@ It shares functionality with Paramter Store but is designed specifically for sto
 
 It can be used via the Console, CLI, API or SDK i.e. used from within applications. It supports the automatic rotation of secrets (via Lambda) and directly integrates with some AWS products for eg. when a secret is rotated, it is changed also inside an RDS (Relational Database Service).
 
-Secrets Manager integrates with IAM and its secrets are encrypted using KMS.
+Secrets Manager integrates with IAM and its secrets are encrypted using KMS. It can store secrets up to 12 Kb in size each.
 
 <div align="center">
     <img src="./images/secrets_manager.png" alt="cloud services" width="500" />
