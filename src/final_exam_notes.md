@@ -31,6 +31,30 @@
 
 * CodeDeploy is not a destination for SNS messages. However a deployment group can be configured to monitor an alarm. If the alarm enters the ALARM state, the deployment will automatically fail and roll back.
 
+* CodeDeploy offers 3 deployment types for Lambda functions:
+
+    - Canary
+    - Linear
+    - All-at-once
+
+* The application specification file (AppSpec file) is a YAML or JSON file used by CodeDeploy to manage a deployment.
+
+    The `BeforeAllowTraffic` and `AfterAllowTraffic` lifecycle hooks of the `AppSpec.yaml` file allow you to use Lambda functions to validate service activity during deployment.
+
+* CodeDeploy deployments can be monitored using the following CloudWatch tools:
+
+    - Amazon EventBridge (formerly CloudWatch Events)
+    - CloudWatch alarms
+    - CloudWatch Logs
+
+    As part of CodeDeploy operations, EventBridge can be set up with the following targets:
+
+    - Lambda functions (eg. pass notifications to Slack when deployment fails)
+    - Kinesis streams (eg. for realtime status monitoring)
+    - SQS queues
+    - SNS topics
+    - built-in targets like CloudWatch alarm actions (eg. CloudWatch alarm actions used to automatically stop, terminate, reboot or recover EC2 instances upon a specific event)
+
 ### CodePipeline
 
 * For a CI/CD pipeline to deploy resources in multiple AWS accounts, create a cross-account IAM role in the target account that trusts the pipeline account. Also update the pipeline to assume the cross-account role in the target account.
@@ -73,7 +97,13 @@
 
 * To deploy standardised IAM roles to all current and future accounts within an organisation, deploy a CloudFormation StackSet targeting the organisaton root.
 
-A StackSet is like a stack but it deploys accross multiple regions and accounts.
+    A StackSet is like a stack but it deploys accross multiple regions and accounts.
+
+* A Permission Set is a template that you create and maintain that defines a collection of 1 or more IAM policies. You can assign a Permission Set to users or groups.
+
+    SCPs (Service Control Policies) restrict access to AWS services and actions across AWS accounts. SCPs apply to users, roles and groups in member accounts not to management accounts.
+
+    A Permission Set policy will override an SCP for a group (or other) in a management account.
 
 ## S3
 
@@ -111,9 +141,31 @@ A StackSet is like a stack but it deploys accross multiple regions and accounts.
 
     Instance type (aka flavor) can be overwritten by the `.ebextensions` file.
 
+* In API Gateway, you can create a canary release deployment when deploying the API with canary settings.
+
+    There is no canary routing option in an ALB.
+
+    NLB does not support weighted target groups, unlike ALB.
+
+* Elastic Beanstalk provides those deployment policies:
+
+    - All-at-once (default)
+    - Rolling (default for EB CLI)
+    - Rolling with additional batch
+    - Blue/green
+    - Immutable
+
+    Immutable launches a new set of instances running the new version of the application in a separate ASG alongside the instances running the old version.
+
+    Immutable deployments can prevent issues caused by partially completed rolling deployments. The original instances remain untouched in case of any failure.
+
 ## Security
 
 * For a web app to maintain performance during a DDoS attack, CloudFront with WAF can be used to filter malicious traffic.
+
+* Unlike an Internet Gateway (IGW) which allows both inbound and outbound IPv4 traffic, an egress-only Internet Gateway allows only outbound IPv6 traffic.
+
+    A VPC can have only 1 IGW attached at any given time.
 
 ## Monitoring and Logging
 
@@ -146,3 +198,81 @@ A StackSet is like a stack but it deploys accross multiple regions and accounts.
 * EventBridge can monitor AWS service events such as EC2 instance state changes. A rule in EventBridge can be set up that matches specific EC2 state changes, matching events can then be routed to a Lambda function.
 
 * SNS integrates directly with CloudWatch alarms. Alarms can trigger SNS to notify teams instantly.
+
+* Amazon Data Firehose is a fully managed service that delivers real-time streaming data to various destinations. It allows you to capture, transform and load streaming data into data stores and analytics tools.
+
+    A Firehose stream is the underlying entity of Amazon Data Firehose. You use Amazon Data Firehose by creating a Firehose stream and then sending data to it. In the Firehose stream, you can configure the source of the streaming data, optionally add data transformation steps and destination for the data.
+
+    Lambda functions can transform and process data as it flows through a Firehose stream.
+
+* Although CloudWatch Logs allow you to filter and transform log data before delivering it to a destination, they are not designed for complex transformations of data like geolocation and IP enrichment.
+
+    CloudWatch Logs centralises logs from various sources and includes metric filters that allow you to extract specific data from log events and record it as a CloudWatch metric. The metrics can be used for monitoring and alerting.
+
+    CloudWatch Anomaly Detection uses ML to identify unusual patterns in your metrics.
+
+* You can load streaming data into your Amazon OpenSearch service for many different sources.
+
+    Amazon Data Firehose and CloudWatch Logs have built-in support for OpenSearch service (formely aka ElasticSearch).
+
+    S3, Kinesis Data Streams and DynamoDB use Lambda functions as event handlers.
+
+    Kinesis streams are currently the only source supported as a destination for cross-account subscriptions.
+
+    <div align="center">
+        <img src="./images/opensearch.png" alt="Amazon OpenSearch" width="500" />
+    </div>
+
+* AWS Health provides ongoing visibility into the state of your AWS resources, services and accounts. The service delivers alerts and notifications triggered by changes in the health of AWS resources so that you get near-instant event visibility and guidance to help accelerate troubleshooting.
+
+    The Personal Health Dashboard (PHD) can be used which is powered by the AWS Health API.
+
+    CloudWatch Events can be used to detect and react to changes in the status of AWS PHD events. Then, based on the rules defined, CloudWatch Events invokes 1 or more target actions when an event matches the value specified in the rule.
+
+* AWS Trusted Advisor inspects your AWS environment and then makes recommendations when possible to save money, improve system availability and performance or help close security gaps.
+
+    Trusted Advisor is integrated with the Amazon EventBridge and CloudWatch services.
+
+* The ability to search and filter the log data arriving at CloudWatch Logs is achieved by creating one or more metric filters.
+
+    Metric filters define the terms and patterns to look for in log data as it is sent to CloudWatch Logs.
+
+## Disaster recovery
+
+* Application Recovery Controller (ARC) is a service that simplifies and automates the recovery of applications deployed across multiple AZs and regions. It enhances application resilience by managing failover and recovery during outages.
+
+    ARC integrates with services like Route53 and Elastic Load Balancing.
+
+    Zonal shift is a feature in Route53 ARC that can temporarily shift traffic from an impaired AZ to a healthy one.
+
+    Disabling cross-zone load balancing on an ALB means that each load balancer node in an AZ routes requests only to targets within the same AZ.
+
+## Configuration management
+
+* Patch Manager uses patch baselines, which include rules for auto-approving patches within days of their release.
+
+    Patches can be installed by scheduling them to run as a Systems Manager maintenance window task. Patches can be installed individually or to large groups of instances by using EC2 tags.
+
+* With AWS Config, you can:
+
+    - Evaluate AWS resource configurations for desired settings
+    - Get a snapshot of current configurations
+    - Retrieve historical configurations of 1 or more resources
+    - Receive a notification whenever a resource is created, modified or deleted
+    - View relationships between resources
+
+* An aggregator is an AWS Config resource type that collects AWS Config configuration and compliance data from:
+
+    - multiple accounts and multiple regions
+    - single account and multiple regions
+    - an organisation in AWS Organizations and all the accounts in that organisation
+
+* AWS Application Discovery Service helps you plan your migration to the AWS cloud by collecting usage and configuration data about your on-prem servers. Application Discovery Service is integrated with AWS Migration Hub.
+
+    Application Discovery Service offers 2 ways of performing discovery and collecting data about your on-prem servers:
+
+    - Agentless discovery: performed by deploying the AWS Agentless Discovery Connector (OVA file) through your VMware vCenter.
+
+        The Agentless discovery uses the AWS Discovery Connector which is a VMware appliance that can collect information only about VMware virtual machines (VMs). This mode does not require you to install a connector on each host. You install the Discovery Connector as a VM in your VMware vCenter Server environment using an Open Virtualisation Archive (OVA) file.
+
+    - Agent-based discovery: done by deploying the AWS Application Discovery Agent on each VM and physical server.
