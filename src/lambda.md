@@ -82,6 +82,14 @@ To log, the Lambda function needs permissions provided via the execution role.
 
 XRay shows requests to the function and Active Tracing can be enabled on the function.
 
+### Lambda Extensions
+
+Allows users to easily integrate tools for monitoring, observability, security and governance without complex installation or configuration management. Extensions can run in 2 modes:
+
+* Internal extensions run as part of the runtime process, in-process with the Lambda code.
+
+* External extensions run in a separate process from the runtime but within the execution environment as the Lambda function. External extensions can start before the runtime process and can continue after the runtime shuts down.
+
 ### Lambda layers
 
 This groups similar libraries into layers that can be shared between Lambda functions instead of including those libraries in every function. You can create layers or use pre-existing ones provided by AWS.
