@@ -161,7 +161,7 @@ It has 2 types:
 
 ## Lambda at the Edge
 
-Allows you to run lightweight Lambda functions at edge locations. They don't have the full Lambda feature set.
+Lambda@Edge is a feature of Amazon CloudFront that lets you run code closer to users of your application which improves performance and reduces latency. It allows you to run lightweight Lambda functions at edge locations. They don't have the full Lambda feature set.
 
 Use cases include:
 
