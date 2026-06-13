@@ -33,7 +33,7 @@ Is a build-as-a-service product that lets you manage a build environment where y
 
 CodeBuild is a CI service that can compile source code, run tests and produce software packages ready to deploy. It manages the build servers.
 
-It gets the source code from GitHub, CodeCommit, BitBucket, S3 and GitHub Enterprise and can integrate with open source tools like Jenkins and Spinnaker.
+It accepts source code from GitHub, CodeCommit, BitBucket, S3 and GitHub Enterprise and can integrate with open source tools like Jenkins and Spinnaker. CodeBuild supports webhooks when the source repository is GitHub which means that webhooks can be used to rebuild the source code every time a code change is pushed to the repo.
 
 It offers pre-configured environments but also allows customised envs as Docker containers.
 
