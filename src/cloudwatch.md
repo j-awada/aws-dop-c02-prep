@@ -30,6 +30,8 @@ This product logs API calls or account activities as CloudTrail Events that are 
 
 You can create a trail and configure it to be stored in S3 or CLoudWatch logs.
 
+CloudTrail offers a log file integrity validation feature where any tampering of the log files gets detected. When this feature is enabled, CloudTrail creates a hash for every log file that it delivers. Every hour, CloudTrail also creates and delivers a file that references the log files for the last hour and contains a hash of each. This file is called a digest file. CloudTrail signs each digest file using the private key of a public and private key pair. The public key can be used to validate the digest file.
+
 CloudTrail is not used for realtime logging, it has a 15 mins delay.
 
 ## CloudTrail log file integrity validation
