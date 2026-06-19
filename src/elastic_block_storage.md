@@ -92,6 +92,8 @@ Mount points are created locally and are available via 2 protocols NFS (Linux) o
 
 File Gateway does not support object locking in the case of multiple file share to a bucket.
 
+The `RefreshCache` command refreshes the cached inventory of objects for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed or replaced since the gateway last listed the bucket's contents and cached the results.
+
 **2. FSx File Gateway**
 
 Used for configuration or file data. Offers low overhead for accessing files.
