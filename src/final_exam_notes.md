@@ -277,6 +277,13 @@
     - single account and multiple regions
     - an organisation in AWS Organizations and all the accounts in that organisation
 
+* When you add a rule to AWS Config, you can specify when you want it to evaluate the rule i.e. the trigger. There are 2 types of triggers:
+
+    1. Configuration changes
+    2. Periodic
+
+    If both triggers are chosen, AWS Config invokes the Lambda function when it detects a configuration chnage and also at the frequency specified.
+
 * AWS Application Discovery Service helps you plan your migration to the AWS cloud by collecting usage and configuration data about your on-prem servers. Application Discovery Service is integrated with AWS Migration Hub.
 
     Application Discovery Service offers 2 ways of performing discovery and collecting data about your on-prem servers:
