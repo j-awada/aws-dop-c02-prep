@@ -4,6 +4,8 @@ Is a fully managed container orchestration service that helps deploy, manage and
 
 A load balancer can be deployed with the service for load distribution.
 
+You can also configure containers in your tasks to send log information to CloudWatch Logs.
+
 ## 2 Cluster modes
 
 **1. EC2 mode**
