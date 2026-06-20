@@ -85,6 +85,16 @@
 
 * During IaC migration, the Terraform `import` command lets you bring manually created or existing AWS resources under Terraform management without recreating or destroying them.
 
+* To specify how CloudFormation handles updating an ASG, you can add an `UpdatePolicy` attribute in the YAML or JSON. This attribute contains the `AutoScalingReplacingUpdate` policy which enables you to specify whether AWS CloudFormation replaces the ASG with a new one or replaces only the instances in the ASG.
+
+    ```YAML
+    UpdatePolicy:
+        AutoScalingReplacingUpdate:
+            WillReplace: true
+    ```
+
+    This configuration in the CFN YAML will allow it to retain the old group until it finishes creating the new one. If the update fails CFN can roll back to the old ASG and delete the new one.
+
 ## Lambda
 
 * Lambda functions are region-based and automatically use multiple AZs.
