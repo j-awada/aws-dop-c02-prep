@@ -10,6 +10,10 @@ A table is a grouping of items that share a primary key. The number of items is 
 
 A primary key can be simple (Partition) aka `pk` or composite which is a combination of the `pk` and the `sk` (Sort key).
 
+## DynamoDB global tables
+
+This is a fully managed solution for deploying a multi-region, multi-active database without having to build and maintain your own replication solution. You can specify the AWS regions where you want the tables to be available and DynamoDB will propagate ongoing data changes to all of them.
+
 ## Point-in-time Recovery (PITR)
 
 Is disabled by default and needs to be enabled on a table-by-table basis. It allows for a 35-day recovery window.
