@@ -60,6 +60,12 @@ RDS instances can run across multiple subnets in multiple AZs. There are typical
 
 RDS offers cross-region read replicas but this places a load on the RDS instances since replication is not done at the storage layer.
 
+**RDS snapshots**
+
+The first copy is a full snapshot copy which contains all of the data and metadata required to restore the DB instance. After this first snapshot, incremental snapshots can be taken of the DB instance where only data that has changed after the most recent snapshot gets copied.
+
+Incremental snapshot copying is faster and results in lower storage costs than full snapshot copying.
+
 ### 4. Aurora
 
 Aurora is not limited to primary and standby instances, it can have 1 or more replicas in every AZ. This makes it's availability subject to the number of AZs in the region.
