@@ -18,6 +18,12 @@ Scaling policies help update the desired capacity based on metrics or criteria. 
     - Stepped: allows granular control for eg. if CPU usage is between 50 to 60% then add 1 instance, between 60 to 70% add 2 instances, etc. and the same in reverse.
     - Target tracking: it comes with a pre-defined set of metrics eg. CPU utilisation, average network in/out and ALB request count per target.
 
+## Instance lifecycle
+
+When EC2 Auto Scaling responds to a scale out event, it launches one or more instances. These instances start in the `Pending` state. If a lifecycle hook `autoscaling:EC2_INSTANCE_LAUNCHING` is added to the Auto Scaling group, the instance will move from the `Pending` state to the `Pending:Wait` state. After the lifecycle action is complete, the instance will enter the `Pending:Proceed` state. When fully configured and attached, the instance will enter the `InService` state.
+
+Similary on a scale in event, the instance is detached form the Auto Scaling group and enters the `Terminating` state. Upon adding a `autoscaling:EC2_INSTANCE_TERMINATING` lifecycle hook, the instance will move from `Terminating` to `Terminating:Wait` state. After the hook is complete, the instance will enter the `Terminating:Proceed` state and eventually `Terminated`.
+
 ## ASG Lifecycle Hooks
 
 Hooks enable configuring custom actions on instances to get executed for eg. during instance launch or termination.
