@@ -71,6 +71,20 @@
 
 * CodePipeline can only have one source stage. To trigger CodePipeline when code is pushed in more than 1 repo, an EventBridge rule can be created for each repo that can trigger the same CodePipeline.
 
+* AWS CodePipeline includes a number of actions that help you configure build, test, and deploy resources for your automated release process. If your release process includes activities that are not included in the default actions, such as an internally developed build process or a test suite, you can create a custom action for that purpose and include it in your pipeline.
+
+    You can create custom actions for the following AWS CodePipeline action categories:
+
+    - A custom build action that builds or transforms the items
+
+    - A custom deploy action that deploys items to one or more servers, websites, or repositories
+
+    - A custom test action that configures and runs automated tests
+
+    - A custom invoke action that runs functions
+
+    When you create a custom action, you must also create a job worker that will poll CodePipeline for job requests for this custom action, execute the job, and return the status result to CodePipeline. This job worker can be located on any computer or resource as long as it has access to the public endpoint for CodePipeline. To easily manage access and security, you can host your job worker on an Amazon EC2 instance.
+
 ### IaC
 
 * To prevent accidental _replacement_ of an RDS instance during a CloudFormation stack update, use CloudFormation Stack Policy to prevent updating the database.
