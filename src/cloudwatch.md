@@ -2,6 +2,10 @@
 
 Is a public service to ingest, store and manage logging data. It supports native ingests of logs from AWS services. The CloudWatch agent can be installed to bring in logs from systems or custom applications.
 
+## Alarms
+
+A CloudWatch alarm can be created and used in `CodeDeploy` operations. The alarm watches a single metric over time and performs 1 or more actions based on the value of the metric relative to the given threshold over time. With `CodeDeploy`, you can configure a deployment group to stop when the alarm gets activated.
+
 ## Log event
 
 A log event consists of 2 parts: the timestamp and a raw message.
