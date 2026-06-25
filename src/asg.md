@@ -39,3 +39,13 @@ EC2 instance health is evaluated in 3 ways:
 - ELB: is the load balancer health check where the instance needs to be both healthy and pass the load balancer health check.
 
 - Custom: where an external system can be integrated to mark instances as healthy or not.
+
+## VM Import/Export
+
+Enables you to easily import virtual machine images from your existing envrionment to Amazon EC2 instances and export them back to your on-prem environment.
+
+VM Import will convert the VM image to Amazon EC2 AMI which can be used to run EC2 instances. An image can be exported to an S3 bucket.
+
+One use-case can be: launch an EC2 instance with the latest Linux OS in AWS. Use the AWS VM Import/Export service to import the EC2 image, export it to a VMware ISO in an Amazon S3 bucket and then import the ISO to an on-premises server.
+
+It is worth noting that there is no way to directly download an ISO image from Amazon.
