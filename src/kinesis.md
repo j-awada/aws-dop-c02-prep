@@ -51,7 +51,7 @@ Is a business analytics and intelligence service (BA/BI) used for visualisations
 
 ## Amazon Athena
 
-Is a serverless interactive querying service to perform ad-hoc queries on data in S3 where loading/transformation of data is not requried.
+Is a serverless interactive querying service to perform ad-hoc queries on data in S3 where loading/transformation of data is not requried. Standard SQL is used to run queries and get results in seconds.
 
 It uses a process called schema-on-read which modifies data in-flight as it's read and translates it to a table-like schema.
 
