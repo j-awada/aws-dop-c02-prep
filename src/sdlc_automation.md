@@ -76,6 +76,8 @@ The configuration section has:
 * resources (for ECS/Lambda): for Lambda it contains the information about the Lambda function used during deployment. For ECS, it contains things like task definitions or container information.
 * permissions (for EC2/on-premise): details any special permissions that need to be applied on parts of the filesystem.
 
+The`AppSpec` file has a hooks section. A Lambda function can be specified for the lifecycle hook you want to test. If the test fails, the deployment stops, rolled back and marked as failed. For example, the `AfterAllowTestTraffic` hook can be used to validate deployment using test traffic with traffic served to a test listener. If validation succeeds, the deployment continues to the `BeforeAllowTraffic` hook.
+
 ## CodePipeline
 
 Is a continuous delivery tool designed to control the flow from source code through build and finally deployment. It is the glue that holds things together. It is a service used to model, visualise and automate the steps required to release a software.
