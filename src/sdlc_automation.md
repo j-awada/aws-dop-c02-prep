@@ -78,6 +78,12 @@ The configuration section has:
 
 The`AppSpec` file has a hooks section. A Lambda function can be specified for the lifecycle hook you want to test. If the test fails, the deployment stops, rolled back and marked as failed. For example, the `AfterAllowTestTraffic` hook can be used to validate deployment using test traffic with traffic served to a test listener. If validation succeeds, the deployment continues to the `BeforeAllowTraffic` hook.
 
+**Some hooks:**
+
+<div align="center">
+    <img src="./images/hooks.png" alt="AppSpec hooks" width="500" />
+</div>
+
 ## CodePipeline
 
 Is a continuous delivery tool designed to control the flow from source code through build and finally deployment. It is the glue that holds things together. It is a service used to model, visualise and automate the steps required to release a software.
