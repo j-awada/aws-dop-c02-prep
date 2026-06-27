@@ -85,6 +85,8 @@
 
     When you create a custom action, you must also create a job worker that will poll CodePipeline for job requests for this custom action, execute the job, and return the status result to CodePipeline. This job worker can be located on any computer or resource as long as it has access to the public endpoint for CodePipeline. To easily manage access and security, you can host your job worker on an Amazon EC2 instance.
 
+* If you define a CodePipeline structure using a JSON file, the default `runOrder` value for an action is 1 for sequential execution. To specify parallel actions, use the same integer/value for every action you want to run in parallel.
+
 ### IaC
 
 * To prevent accidental _replacement_ of an RDS instance during a CloudFormation stack update, use CloudFormation Stack Policy to prevent updating the database.
