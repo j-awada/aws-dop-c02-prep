@@ -49,3 +49,15 @@ VM Import will convert the VM image to Amazon EC2 AMI which can be used to run E
 One use-case can be: launch an EC2 instance with the latest Linux OS in AWS. Use the AWS VM Import/Export service to import the EC2 image, export it to a VMware ISO in an Amazon S3 bucket and then import the ISO to an on-premises server.
 
 It is worth noting that there is no way to directly download an ISO image from Amazon.
+
+## Neworking
+
+* **Security groups**: act as a firewall for associated Amazon EC2 instances controlling both inbound and outbound traffic at the instance level. When you launch an instance, you can associate it with one or more security groups that you've created. Each instance in your VPC could belong to a different set of security groups. If you don't specify a security group when you launch an instance, the instance is automatically associated with the default security group of the VPC.
+
+* **Network access control lists (ACLs)**: act as a firewall for associated subnets, controlling both inbound and outbound traffic at the subnet level.
+
+* **Flow logs**: capture information about the IP traffic going to and from network interfaces in your VPC. You can create a flow log for a VPC, subnet or individual network interface. Flow log data is published to CloudWatch Logs or Amazon S3 and can help in diagnosis.
+
+<div align="center">
+    <img src="./images/asg-networking.png" alt="security groups" width="500" />
+</div>
