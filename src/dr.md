@@ -70,6 +70,8 @@ Incremental snapshot copying is faster and results in lower storage costs than f
 
 Aurora is not limited to primary and standby instances, it can have 1 or more replicas in every AZ. This makes it's availability subject to the number of AZs in the region.
 
+Aurora Global Database lets you create read replicas in multiple AWS regions with replication latency typically under 1 second. This allows a single database to serve users worldwide with low latency and provides resilience in case of regional failures.
+
 Aurora is the most resiliant RDS available from AWS.
 
 ### Bonus: DynamoDB and Aurora
