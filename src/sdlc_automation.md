@@ -25,7 +25,7 @@ On the backend, it uses S3 and DynamoDB to store repos. It can recieve notificat
 
 ## CodeArtifact
 
-Is a service used to securely store, publish and share software packages. It can be configured to automatically fetch public packages and dependencies.
+Is a service used to securely store, publish and share software packages. It can be configured to automatically fetch public packages and dependencies using popular package managers and build tools like Maven, Gradle, npm, Yarn, Twine, pip and NuGet.
 
 ## CodeBuild
 
