@@ -31,6 +31,14 @@ Allows applying OS or software patches to a large group of EC2 or on-prem instan
 
 Is an automated security assessment service that scans EC2 instance and container images for vulnerabilities and deviations from best practices.
 
+## AWS Shield
+
+Is a service suited for preventing DDoS attacks on AWS resources.
+
+## Amazon Macie
+
+Is an ML-powered security service that helps you prevent data loss by automatically discovering, classifying and protecting sensitive data stored in Amazon S3. Macie uses machine learning to recognise sensitive data such as personally identifiable information (PII) or intellectual property. It provides visibility into where this data is stored and how it is being used in your organisation.
+
 ## AWS GuardDuty
 
 Is a threat detection service that continuously monitors AWS accounts, workloads and data for malicious activity and unauthorised behaviour. It uses machine learning and threat intelligence.
