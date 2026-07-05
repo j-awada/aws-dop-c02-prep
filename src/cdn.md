@@ -82,6 +82,10 @@ In the past, every SSL-enabled website needed its own IP address. It is however 
 
 In 2023, SNI (Serve Name Indication) appeared which is a TLS extention that allows a client to tell the server which domain it is trying to access. This occurs within the TLS handshake before HTTP. This allows 1 server to host several websites. The issue is that older browser do not support SNI. Hence why CLoudFront supports both SNI but also IP per server at an extra cost.
 
+## CloudFront and security headers
+
+Amazon CloudFront supports adding HTTP security headers using response headers policies. This feature allows configuring CloudFront to include headers like `X-Content-Type-Options`, `X-Frame-Options` and `X-XSS-Protection` in HTTP responses. These headers can be attached by creating a custom policy or using an AWS-managed policy such as `SecurityHeadersPolicy`.
+
 ## Origin types
 
 Origins are where CloudFront goes to get content. Origins are selected from the Behaviour section and they can be:
