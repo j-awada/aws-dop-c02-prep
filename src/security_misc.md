@@ -27,9 +27,11 @@ Allows applying OS or software patches to a large group of EC2 or on-prem instan
 * Maintenance Windows: is the configuration item used to tie all this together.
 * Run Command: `AWS-RunPatchbaseline` is defined within the maintenance window and is used to perform the task on the target group.
 
-## AWS Inspector
+## Amazon Inspector
 
-Is an automated security assessment service that scans EC2 instance and container images for vulnerabilities and deviations from best practices.
+Is an automated security assessment service that scans EC2 instance and container images for vulnerabilities and deviations from best practices. After performing an assessment, Amazon Inspector produces a detailed list of security findings prioritised by level of severity.
+
+Amazon Inspector security assessment helps check for unintended network accessibility of EC2 instances and for vulnerabilities on those EC2 instances. Assessments are offered as pre-defined rules packages mapped to common security best practices and vulnerability definitions. Examples of built-in rules include checking for access to EC2 instances from the internet, remote root login being enabled, or vulnerable software versions installed.
 
 ## AWS Shield
 
