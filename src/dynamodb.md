@@ -54,11 +54,19 @@ They help improve the efficiency of data retrieval and are of 2 types of indexes
 
 They must be created when the base table is created and they allow for an alternative sort key `sk` on the table.
 
+* Partition key: same as the table
+* Sort key: different from the table
+* Supports strongly consistent reads (i.e. the latest version of the data after a write) and is used for sorting/querying items within the same partition key
+
 **Global Secondary Indexes (GSI)**
 
 They can be created at any time with a default limit of 20 per base table.
 
 It allows for creating an alternative view of the table using a different partition key and sort key.
+
+* Partition key: can be different from the table.
+* Sort key: can also be different
+* Does not support strongly consistent reads (i.e. the latest version of the data after a write) and is used to query the data using a completely different key
 
 ## Streams and Triggers
 
