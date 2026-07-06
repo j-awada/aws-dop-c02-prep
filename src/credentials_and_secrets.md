@@ -8,6 +8,8 @@ You can create a standard-tier (up to 10,000 parameters at 4 Kb size) or advance
 
 You can create a parameter eg. `/app/app_username` of type String, StringList or Encrypted via the Key Management Service (KMS) that can be used to store configuration information.
 
+The Parameter Store does not provide dedicated storage with lifecycle management and key rotation, unlike the Secrets Manager.
+
 ## AWS Secrets Manager
 
 It shares functionality with Paramter Store but is designed specifically for storing secrets (passowrds, API keys).
