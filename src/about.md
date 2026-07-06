@@ -13,6 +13,7 @@ This book contains material for preparing for the AWS DevOps Professional (DOP-C
     - [IAM](./iam.md)
     - [AWS organisations](./aws_organisations.md)
     - [Advanced Identity and Permissions](./advanced_identity_and_permissions.md)
+    - [Amazon Cognito](./cognito.md)
 - [SDLC Automation](./sdlc_automation.md)
 - [Cloudformation](./cloudformation.md)
 - [AWS OpsWorks](./aws_opsworks.md)
