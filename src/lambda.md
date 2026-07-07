@@ -80,7 +80,7 @@ Lambda sends execution logs to Cloudwatch logs `/aws/lambda/<function name>` log
 
 To log, the Lambda function needs permissions provided via the execution role.
 
-XRay shows requests to the function and Active Tracing can be enabled on the function.
+X-Ray shows requests to the function and Active Tracing can be enabled on the function. To set up an application running on ECS to use X-Ray, the application's Docker image should run the X-Ray daemon. The port mapping and network settings can be configured in the task definition to allow traffic at UDP port 2000.
 
 ### Lambda Extensions
 
