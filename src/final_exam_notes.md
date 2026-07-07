@@ -300,7 +300,7 @@
     1. Configuration changes
     2. Periodic
 
-    If both triggers are chosen, AWS Config invokes the Lambda function when it detects a configuration chnage and also at the frequency specified.
+    If both triggers are chosen, AWS Config invokes the Lambda function when it detects a configuration change and also at the frequency specified.
 
 * AWS Application Discovery Service helps you plan your migration to the AWS cloud by collecting usage and configuration data about your on-prem servers. Application Discovery Service is integrated with AWS Migration Hub.
 

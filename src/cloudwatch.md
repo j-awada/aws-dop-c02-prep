@@ -2,6 +2,8 @@
 
 Is a public service to ingest, store and manage logging data. It supports native ingests of logs from AWS services. The CloudWatch agent can be installed to bring in logs from systems or custom applications.
 
+Note that the CloudWatch Dashboard is primarily used to monitor AWS resources and not AWS configuration.
+
 ## Alarms
 
 A CloudWatch alarm can be created and used in `CodeDeploy` operations. The alarm watches a single metric over time and performs 1 or more actions based on the value of the metric relative to the given threshold over time. With `CodeDeploy`, you can configure a deployment group to stop when the alarm gets activated.
@@ -21,6 +23,10 @@ Contains several log streams and represents the thing being monitored eg. `var/l
 Retention, access permissions and encryption are set on the log group level.
 
 A metric filter can also be defined on a log group and it looks for patterns in the log streams eg. a failed login attempt or an application crash. This allows creating metrics to that specific filter eg. the total failed login attempts which can trigger an alarm that can send notifications etc.
+
+## Subscription Filters
+
+Are a feature of CloudWatch Logs that allow you to distribute log data from one log group to other AWS services or destinations such as Amazon Data Streams, Amazon Data Firehose, AWS Lambda or Amazon S3.
 
 # EventBridge
 
