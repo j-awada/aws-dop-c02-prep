@@ -185,6 +185,8 @@
 
     Immutable deployments can prevent issues caused by partially completed rolling deployments. The original instances remain untouched in case of any failure.
 
+* Amazon Rekognition can store information about detected faces in server-side containers known as collections. You can use the facial information that's stored in a collection to search for known faces in images, stored videos and streaming videos. Amazon Rekognition supports the IndexFaces operation. This can be used to detect faces in an image and persist information about facial features that are detected in a collection.
+
 ## Security
 
 * For a web app to maintain performance during a DDoS attack, CloudFront with WAF can be used to filter malicious traffic.
