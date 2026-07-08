@@ -195,6 +195,10 @@
 
     A VPC can have only 1 IGW attached at any given time.
 
+* With AWS Service Catalog, cloud resources can be centrally managed to achieve infrastructure as code (IaC) template governance at scale, whether written in CloudFormation or Terraform. Template constraints can be applied when limiting end-users' options during product launch. This ensures that the organisation's compliance requirements are not breached.
+
+    A product must be present within a Service Catalog portfolio to apply template constraints. A template constraint includes rules that narrow the allowable values for parameters in the underlying AWS CloudFormation template of the product.
+
 ## Monitoring and Logging
 
 * Memory metrics are not available by default in CloudWatch for EC2 instances. A CloudWatch agent must be installed and configured on the instance to obtain internal metrics like memory utilisation, disk usage, process health, etc.

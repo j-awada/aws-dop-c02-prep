@@ -84,6 +84,14 @@ The`AppSpec` file has a hooks section. A Lambda function can be specified for th
     <img src="./images/hooks.png" alt="AppSpec hooks" width="500" />
 </div>
 
+### AWS Serverless Application Model (SAM)
+
+This comes built-in with CodeDeploy to provide gradual AWS Lambda deployments. It does the following:
+
+* Deploys new versions of a Lambda function and automatically creates aliases that point to the new version
+* Gradually shifts customer traffic to the new version until the decision to shift all traffic
+* Defines pre-traffic and post-traffic test functions to verify that the newly deployed code is configured correctly
+
 ## CodePipeline
 
 Is a continuous delivery tool designed to control the flow from source code through build and finally deployment. It is the glue that holds things together. It is a service used to model, visualise and automate the steps required to release a software.

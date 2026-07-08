@@ -26,11 +26,11 @@ A metric filter can also be defined on a log group and it looks for patterns in 
 
 ## Subscription Filters
 
-Are a feature of CloudWatch Logs that allow you to distribute log data from one log group to other AWS services or destinations such as Amazon Data Streams, Amazon Data Firehose, AWS Lambda or Amazon S3.
+Are a feature of CloudWatch Logs that allow you to distribute log data from one log group to other AWS services or destinations such as Data Firehose or AWS Lambda but not directly with S3.
 
 # EventBridge
 
-Is a serverless, fully managed and scalable event bus that enables integrations between AWS services and other applications. EventBridge was formerly called CloudWatch Events.
+Is a serverless, fully managed and scalable event bus that enables integrations between AWS services and other applications. EventBridge was formerly called CloudWatch Events. It is used to monitor AWS resources and the applications running on AWS to detect and react to changes based on rules you create that EventBridge can invoke eg. sending notifications, taking a corrective action or other.
 
 It makes it easier to connect applications such that events can be ingested, filtered, transformed and delivered without writing custom code.
 

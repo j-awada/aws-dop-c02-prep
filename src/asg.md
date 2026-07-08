@@ -18,6 +18,11 @@ Scaling policies help update the desired capacity based on metrics or criteria. 
     - Stepped: allows granular control for eg. if CPU usage is between 50 to 60% then add 1 instance, between 60 to 70% add 2 instances, etc. and the same in reverse.
     - Target tracking: it comes with a pre-defined set of metrics eg. CPU utilisation, average network in/out and ALB request count per target.
 
+The `AWS::AutoScaling::AutoScalingGroup` resource uses the UpdatePolicy attribute to define how an Auto Scaling group resource is updated when the AWS CloudFormation stack is updated. This policy supports several configuration options amongst which are:
+
+* `WaitOnResourceSignals` and `PauseTime`: when CloudFormation waits to receive a success signal until the maximum time specified by PauseTime value. If a signal is not received, CloudFormation cancels the update and rolls back the stack.
+* `MinSuccessfulInstancesPercent`: prevents CloudFormation from rolling back the entire stack if only a single instance fails to launch
+
 ## Instance lifecycle
 
 When EC2 Auto Scaling responds to a scale out event, it launches one or more instances. These instances start in the `Pending` state. If a lifecycle hook `autoscaling:EC2_INSTANCE_LAUNCHING` is added to the Auto Scaling group, the instance will move from the `Pending` state to the `Pending:Wait` state. After the lifecycle action is complete, the instance will enter the `Pending:Proceed` state. When fully configured and attached, the instance will enter the `InService` state.
