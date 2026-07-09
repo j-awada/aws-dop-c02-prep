@@ -43,7 +43,11 @@ Is an ML-powered security service that helps you prevent data loss by automatica
 
 ## AWS GuardDuty
 
-Is a threat detection service that continuously monitors AWS accounts, workloads and data for malicious activity and unauthorised behaviour. It uses machine learning and threat intelligence.
+Is a threat detection service that continuously monitors AWS accounts, workloads and data for malicious activity and unauthorised behaviour. It uses machine learning and threat intelligence. GuardDuty generates a finding whenever it detects unexpected and potentially malicious activity in the AWS environment.
+
+Findings from Amazon GuardDuty can be published to Amazon EventBridge as events that can be used to trigger a Lambda function which will send notifications to the external messaging platform.
+
+Amazon Detective can provide analysis information related to a given finding.
 
 <div align="center">
     <img src="./images/guardduty.png" alt="AWS GuardDuty" width="500" />
