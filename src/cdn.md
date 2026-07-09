@@ -169,6 +169,7 @@ Lambda@Edge is a feature of Amazon CloudFront that lets you run code closer to u
 
 Use cases include:
 
+* Triggering a Lambda function to execute a user authentication process in a specific AWS location proximate to the user
 * A/B testing using a Viewer Request function
 * As part of the Origin request eg. migration between S3 origins
 * Customise behaviour based on the device type of a customer
