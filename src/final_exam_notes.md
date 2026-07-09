@@ -155,7 +155,7 @@
 
 * Route53 health checks with latency routing provide automated failover and route users to the nearest healthy region.
 
-* Note that AWS Config evaluates periodically and not in real-time. It continuously evaluates resources against rules. It triggers automatic remediation using an SSM Automation document.
+* Note that AWS Config evaluates periodically and not in real-time. It continuously evaluates resources against rules. It triggers automatic remediation using an SSM Automation document. There is a list of remediation actions to use or you can create custom remediation actions using AWS Systems Manager Automation documents.
 
 * AWS Config can not be used to perform emergency maintenance on instances.
 
@@ -288,6 +288,7 @@
 * With AWS Config, you can:
 
     - Evaluate AWS resource configurations for desired settings
+    - Stream configuration changes and notifications to an Amazon SNS topic
     - Get a snapshot of current configurations
     - Retrieve historical configurations of 1 or more resources
     - Receive a notification whenever a resource is created, modified or deleted
