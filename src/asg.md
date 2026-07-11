@@ -29,6 +29,12 @@ When EC2 Auto Scaling responds to a scale out event, it launches one or more ins
 
 Similary on a scale in event, the instance is detached form the Auto Scaling group and enters the `Terminating` state. Upon adding a `autoscaling:EC2_INSTANCE_TERMINATING` lifecycle hook, the instance will move from `Terminating` to `Terminating:Wait` state. After the hook is complete, the instance will enter the `Terminating:Proceed` state and eventually `Terminated`.
 
+## Single EC2 instance fault tolerance
+
+You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to underlying hardware failure or other.
+
+The built-in instance recovery failure feature for Amazon EC2 does not apply to instances using store volumes.
+
 ## ASG Lifecycle Hooks
 
 Hooks enable configuring custom actions on instances to get executed for eg. during instance launch or termination.
