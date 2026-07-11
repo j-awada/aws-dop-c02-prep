@@ -83,9 +83,7 @@ WAF can protect global services like CloudFront but also regional services like 
 
 Web ACL is associated with a WAF distribution and has Rules and Rule Groups that control how the WAF reacts.
 
-## AWS Network Firewall
-
-It defines the VPC, Subnets and Firewall Policy.
+AWS WAF provides control over which traffic to allow or block to a web application by defining customisable web security rules. This includes blocking common attacks like SQL injections or cross-site scripting. New rules can be deployed within minutes.
 
 <div align="center">
     <img src="./images/network_firewall.png" alt="AWS Network Firewall" width="500" />
