@@ -10,6 +10,16 @@ Cloudformation does things in parallel which is why directives like `DependsOn` 
 
 Cloudformation can be configured to wait until a number of signals are successful before returning the `CreateComplete` signal.
 
+### Dynamic references
+
+Provide a compact and powerful way to specify external values that are stored and managed in other services such as the Systems Manager Parameter Store, in your stack templates. When dynamic references are used, CloudFormation retrieves the value of the specified reference when necessary during stack and change set operations.
+
+CloudFormation currently supports the following dynamic reference patterns:
+
+* ssm, for plaintext values stored in AWS Systems Manager Parameter Store
+* ssm-secure, for secure strings stored in AWS Systems Manager Parameter Store
+* secretsmanager, for entire secrets or specific secret values that are stored in AWS Secrets Manager
+
 ### Intrinsic functions
 
 * Allow you to gain access to data at runtime i.e. when the template is being used to create a stack, for example:
