@@ -35,7 +35,7 @@ Amazon Inspector security assessment helps check for unintended network accessib
 
 ## AWS Shield
 
-Is a service suited for preventing DDoS attacks on AWS resources.
+Is a service suited for preventing DDoS attacks on AWS resources. It is available in 2 tiers: Standard and Advanced. AWS Shield Standard is included automatically and transparently in your Elastic Load Balancing load balancers, CloudFront and Route 53 at no additional costs.
 
 ## Amazon Macie
 
