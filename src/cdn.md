@@ -143,6 +143,14 @@ CloudFront can run in public or private modes. Private mode is achieved in 2 way
 
     The signed cookie is generated via a Lambda function after authentication is done. This cookie is returned back to the user which will use it with the request sent to the CF distribution. Access to resources is then granted.
 
+## Secure end-to-end connections
+
+You can already configure CloudFront to help enforce secure end-to-end connections to origin servers by using HTTPS. Field-level encryption adds an additional layer of security along with HTTPS and lets you protect specific data such that only certain applications can see it.
+
+Field-levels encryption allows you to securely upload user-submitted sensitive information to your web servers.
+
+To use field-level encryption, you configure your CloudFront distribution to specify the set of fields in POST requests that you want to be encrypted, and the public key to use to encrypt them. You can encrypt up to 10 data fields in a request.
+
 ## CloudFront Geo Restriction
 
 Determines which areas of the planet can access content delivered via CF.
