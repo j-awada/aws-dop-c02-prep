@@ -227,6 +227,10 @@
 
     CodeGuru Reviewer should be associated with a Git repo and is not integrated with CodeBuild.
 
+* CodeGuru Reviewer Secrets Detector is an automated tool that helps developers detect secrets in source code or configuration files such as passwords, API keys, SSH keys and access tokens. The detector uses machine learning to identify hardcoded secrets as part of the code review process.
+
+    CodeGuru Reviewer suggests remediation steps to secure secrets with AWS Secrets Manager.
+
 * EventBridge can monitor AWS service events such as EC2 instance state changes. A rule in EventBridge can be set up that matches specific EC2 state changes, matching events can then be routed to a Lambda function.
 
 * SNS integrates directly with CloudWatch alarms. Alarms can trigger SNS to notify teams instantly.
