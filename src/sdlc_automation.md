@@ -62,6 +62,10 @@ A CodeDeploy agent needs to be installed which communicates with the product and
 
 It can be used to deploy using CloudFormation and it integrates with tools like CodePipeline, GitHub and Jenkins.
 
+### BlueInstanceTerminationOption
+
+Is an option within CodeDeploy to determine whether instances in the original environment are terminated when a blue/green deployment is successful. `BlueInstanceTerminationOption` does not apply to Lambda deployments.
+
 ### The appspec file
 
 CodeDeploy is customised using `appspec.yml` or `appspec.json` files.
