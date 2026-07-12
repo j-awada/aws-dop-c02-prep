@@ -60,6 +60,8 @@ RDS instances can run across multiple subnets in multiple AZs. There are typical
 
 RDS offers cross-region read replicas but this places a load on the RDS instances since replication is not done at the storage layer.
 
+Amazon RDS uses the Amazon SNS (Simple Notification Service) to provide notification when an Amazon RDS event occurs via email, text message or a call to an HTTP endpoint.
+
 **RDS snapshots**
 
 The first copy is a full snapshot copy which contains all of the data and metadata required to restore the DB instance. After this first snapshot, incremental snapshots can be taken of the DB instance where only data that has changed after the most recent snapshot gets copied.
@@ -71,6 +73,8 @@ Incremental snapshot copying is faster and results in lower storage costs than f
 Aurora is not limited to primary and standby instances, it can have 1 or more replicas in every AZ. This makes it's availability subject to the number of AZs in the region.
 
 Aurora Global Database lets you create read replicas in multiple AWS regions with replication latency typically under 1 second. This allows a single database to serve users worldwide with low latency and provides resilience in case of regional failures.
+
+Aurora Global Database does not support the Aurora Parallel Query feature. Parallel query works best with Aurora MySQL DB clusters that have tables with millions of rows and analytical queries that take minutes or hours to complete. Parallel query is an optimisation that parallelises some of the I/O and computation involved in processing data-intensive queries.
 
 Aurora is the most resiliant RDS available from AWS.
 
