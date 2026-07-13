@@ -39,7 +39,7 @@ The built-in instance recovery failure feature for Amazon EC2 does not apply to 
 
 Hooks enable configuring custom actions on instances to get executed for eg. during instance launch or termination.
 
-This can be integrated with EventBridge or SNS notifications to allow event-driven processing based on launch or temination of EC2 instances within an ASG.
+This can be integrated with EventBridge, SNS notifications or SQS to allow event-driven processing based on launch or temination of EC2 instances within an ASG. A Lambda function on its own can not be used as a notification target for the lifecycle hook of an ASG.
 
 ## ASG Health Checks
 
