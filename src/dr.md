@@ -72,7 +72,7 @@ Incremental snapshot copying is faster and results in lower storage costs than f
 
 Aurora is not limited to primary and standby instances, it can have 1 or more replicas in every AZ. This makes it's availability subject to the number of AZs in the region.
 
-Aurora Global Database lets you create read replicas in multiple AWS regions with replication latency typically under 1 second. This allows a single database to serve users worldwide with low latency and provides resilience in case of regional failures.
+Aurora Global Database lets you create read replicas in multiple AWS regions with replication latency typically under 1 second. This allows a single database to serve users worldwide with low latency and provides resilience in case of regional failures. Aurora Global Database is a single-writer design meaning that only the primary region accepts writes and all secondary regions must route write traffic cross-region to the primary instance introducing latency.
 
 Aurora Global Database does not support the Aurora Parallel Query feature. Parallel query works best with Aurora MySQL DB clusters that have tables with millions of rows and analytical queries that take minutes or hours to complete. Parallel query is an optimisation that parallelises some of the I/O and computation involved in processing data-intensive queries.
 
