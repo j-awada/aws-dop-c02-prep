@@ -36,6 +36,7 @@
     - [Elastic File System](./efs.md)
     - [S3 Object Storage](./s3_misc.md)
     - [DynamoDB](./dynamodb.md)
+    - [ElastiCache](./elasticache.md)
 - [SNS and SQS](./sns_and_sqs.md)
 - [CloudWatch](./cloudwatch.md)
 - [Kinesis](./kinesis.md)
