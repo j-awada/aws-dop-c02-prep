@@ -51,6 +51,10 @@ EC2 instance health is evaluated in 3 ways:
 
 - Custom: where an external system can be integrated to mark instances as healthy or not.
 
+## EC2Rescue
+
+Is a tool that can help diagnose and troubleshoot problems on EC2 Linux and Windows Server instances. You can run the tool manually or run it automatically by using Systems Manager Automation and the AWSSupport-ExecuteEC2Rescue document.
+
 ## VM Import/Export
 
 Enables you to easily import virtual machine images from your existing envrionment to Amazon EC2 instances and export them back to your on-prem environment.
