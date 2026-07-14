@@ -22,6 +22,7 @@
     - [Auto-Scaling Group](./asg.md)
     - [Elasic Beanstalk](./elastic_beanstalk.md)
     - [Elastic Container Service](./ecs.md)
+    - [Elastic Kubernetes Service](./eks.md)
 - [Routing, balancing and DNS](./routing.md)
     - [Elastic Load Balancing](./load_balancers.md)
     - [API Gateway](./api_gateway.md)
