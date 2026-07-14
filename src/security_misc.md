@@ -14,6 +14,8 @@ SSM can automate common and repetitive IT operations and management tasks across
 
 SSM allows managing instances at scale without the need for bastions, SSH or remote sessions.
 
+By default, AWS Systems MAnager does not have permission to perform actions on your instances. You must grant access by using IAM. An instance profile that contains the AWS managed policy `AmazonSSMManagedInstanceCore` is needed to be attached to the EC2 instance for the Session Manager to work.
+
 ### State Manager
 
 Enables configuration management such that EC2 instances or on-prem instances are consistently configrued.
