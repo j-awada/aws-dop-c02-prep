@@ -105,13 +105,17 @@ From the AWS console and in a distribution, under the invalidations tag, you can
 
 How to make sure that a customer does not bypass CloudFront to access data in the origin directly.
 
-### OAI (Origin Access Identity)
+### OAI (Origin Access Identity) - Legacy, not recommended
 
-CloudFront Origin Access Identity (OAI) is an AWS feature that links CloudFront to a private S3 bucket. It is only applicable to S3 origins and not S3 static websites used as origin.
+CloudFront Origin Access Identity (OAI) is an AWS feature that links CloudFront to a private S3 bucket. It is only applicable to S3 origins and not S3 static websites used as origin. Is a type of identity that can be associated with a CloudFront distribution where when the distribution is trying to access data, it becomes the OAI. The OAI can be used within bucket policy eg. DENY all except the OAI. This way a direct access to origin is denied.
 
-Is a type of identity that can be associated with a CloudFront distribution where when the distribution is trying to access data, it becomes the OAI.
+This option is now legacy due to its limitations and AWS recommends migrating to OAC instead.
 
-The OAI can be used within bucket policy eg. DENY all except the OAI. This way a direct access to origin is denied.
+### OAC (Origin Access Control)
+
+OAC helps secure the origin such as S3. It supports features like S3 buckets in multiple regions, S3 server-side encryption with AWS KMS and dynamic requests (PUT and DELETE) to S3.
+
+OAC allows you to restrict access to your origin resources ensuring that they can only be accessed through the CloudFront distributions. This can be done by creating an OAC setting in the CloudFront distribution and updating the S3 bucket policy to grant access only to the CloudFront OAC, preventing direct access to the S3 bucket from any source including direct S3 URLs.
 
 ### Access identity for non-S3 origin
 
