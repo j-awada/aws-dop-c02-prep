@@ -2,8 +2,6 @@
 
 CloudFront is a content delivery network, used to improve the delivery of content to the viewers. It does so by caching and by using an efficient global network.
 
-CloudFront is for download operations only, and uploads are done directly to the origin. CloudFront does read-only caching.
-
 **Some terms:**
 
 * Origin: the source location of the content. Can be S3 Origin or Custom Origin. Groups of origins can improve resiliency.
@@ -39,7 +37,7 @@ CloudFront is for download operations only, and uploads are done directly to the
 
 The primary distribution is the 1 serving production traffic. You create a staging distribution which is a copy of the primary 1.
 
-Viewers can not send requests directly to a staging distribution using a DNS name, IP address or CNAME. Instead, viewers send requests to the primary (production) distibution and CloudFront routes some of those requests to the staging distribution based on the traffic configuration settings in the continuous deployment policy.
+Viewers cannot send requests directly to a staging distribution using a DNS name, IP address or CNAME. Instead, viewers send requests to the primary (production) distibution and CloudFront routes some of those requests to the staging distribution based on the traffic configuration settings in the continuous deployment policy.
 
 CloudFront will route some viewer requests to the staging distribution based on 1 of 2 traffic configurations:
 
@@ -123,7 +121,7 @@ How to make sure that a customer does not bypass CloudFront to access data in th
 
 CloudFront Origin Access Identity (OAI) is an AWS feature that links CloudFront to a private S3 bucket. It is only applicable to S3 origins and not S3 static websites used as origin. Is a type of identity that can be associated with a CloudFront distribution where when the distribution is trying to access data, it becomes the OAI. The OAI can be used within bucket policy eg. DENY all except the OAI. This way a direct access to origin is denied.
 
-This option is now legacy due to its limitations and AWS recommends migrating to OAC instead.
+OAI does not support AWS KMS encrypted S3 buckets, POST/PUT requests or fine-grained IAM policies. This option is therefore legacy due to its limitations and AWS recommends migrating to OAC instead.
 
 ### OAC (Origin Access Control)
 
@@ -137,7 +135,7 @@ There are 2 ways around this:
 
 1. Custom headers
 
-    Configure CloudFront to send a custom header to the origin. Since this is over HTTPS, the headers are not visible and can not be immitated.
+    Configure CloudFront to send a custom header to the origin. Since this is over HTTPS, the headers are not visible and cannot be immitated.
 
     If the header is missing, the origin will refuse the request.
 
@@ -195,6 +193,8 @@ It has 2 types:
 
 Lambda@Edge is a feature of Amazon CloudFront that lets you run code closer to users of your application which improves performance and reduces latency. It allows you to run lightweight Lambda functions at edge locations. They don't have the full Lambda feature set.
 
+Lambda@Edge supports Node.js and Python runtime and can query services like DynamoDB and Secrets Manager.
+
 Use cases include:
 
 * Triggering a Lambda function to execute a user authentication process in a specific AWS location proximate to the user
@@ -206,6 +206,8 @@ Use cases include:
 ## CloudFront Functions
 
 Similar to Lambda@Edge, CloudFront Functions provide a way to run code in response to CloudFront events.
+
+CloudFront Functions has a Javascript-only runtime and it cannot call APIs or external databases.
 
 It is ideal for short-running functions such as:
 
