@@ -35,6 +35,18 @@ CloudFront is for download operations only, and uploads are done directly to the
         - if the data is there it will be served.
         - if the data is not there, origin fetch will take place where the data is fetched from the source. The regional edge location pushes the data to the edge location that requested it where the data be be cached there and returned to the user.
 
+## CloudFront continuous deployment
+
+The primary distribution is the 1 serving production traffic. You create a staging distribution which is a copy of the primary 1.
+
+Viewers can not send requests directly to a staging distribution using a DNS name, IP address or CNAME. Instead, viewers send requests to the primary (production) distibution and CloudFront routes some of those requests to the staging distribution based on the traffic configuration settings in the continuous deployment policy.
+
+CloudFront will route some viewer requests to the staging distribution based on 1 of 2 traffic configurations:
+
+* Weight-based: this option routes the specified percentage of viewer requests to the staging distribution. Session stickiness is used with this option which helps CloudFront treat requests from the same viewer as part of a single session.
+
+* Header-based: this option routes traffic to the staging distribution when the viewer request contains a specific HTTP header (you specify the header and the value). This is useful for local testing.
+
 ## CloudFront Behaviours
 
 The Behaviour can be configured from the Distribution. There is a default behaviour (*) which matches all patterns.
@@ -44,6 +56,8 @@ Behaviour configurations include the origin source, protocol and methods, viewer
 ## CloudFront and origin failover
 
 For high availability, CloudFront can be configured with origin failover by creating an origin group with 2 origins; a primary and a secondary. If the primary origin is unavailable, CloudFront switched to the secondary origin.
+
+Failover happens per-request and not globally i.e. when a primary returns 200 for 1 request and 502 for another, only the failing request goes to the secondary. A practical pattern is to fail over to a static S3 bucket with a custom maintenance page.
 
 ## TTL and invalidation
 
@@ -80,7 +94,7 @@ If the origin is S3, S3 handles certificates natively and nothing needs to be do
 
 In the past, every SSL-enabled website needed its own IP address. It is however possible to host 2 domains on the same server. The latter is achieved using a header in the request to indicate which website is requested.
 
-In 2023, SNI (Serve Name Indication) appeared which is a TLS extention that allows a client to tell the server which domain it is trying to access. This occurs within the TLS handshake before HTTP. This allows 1 server to host several websites. The issue is that older browser do not support SNI. Hence why CLoudFront supports both SNI but also IP per server at an extra cost.
+In 2023, SNI (Server Name Indication) appeared which is a TLS extention that allows a client to tell the server which domain it is trying to access. This occurs within the TLS handshake before HTTP. This allows 1 server to host several websites. The issue is that older browser do not support SNI. Hence why CLoudFront supports both SNI but also IP per server at an extra cost.
 
 ## CloudFront and security headers
 
@@ -105,7 +119,7 @@ From the AWS console and in a distribution, under the invalidations tag, you can
 
 How to make sure that a customer does not bypass CloudFront to access data in the origin directly.
 
-### OAI (Origin Access Identity) - Legacy, not recommended
+### OAI (Origin Access Identity) - _Legacy, not recommended_
 
 CloudFront Origin Access Identity (OAI) is an AWS feature that links CloudFront to a private S3 bucket. It is only applicable to S3 origins and not S3 static websites used as origin. Is a type of identity that can be associated with a CloudFront distribution where when the distribution is trying to access data, it becomes the OAI. The OAI can be used within bucket policy eg. DENY all except the OAI. This way a direct access to origin is denied.
 
@@ -123,7 +137,7 @@ There are 2 ways around this:
 
 1. Custom headers
 
-    Configure CloudFront to send a custom header to the origin. Since this is over HTTPS, the headers are not be visible and can not be immitated.
+    Configure CloudFront to send a custom header to the origin. Since this is over HTTPS, the headers are not visible and can not be immitated.
 
     If the header is missing, the origin will refuse the request.
 
@@ -154,6 +168,8 @@ You can already configure CloudFront to help enforce secure end-to-end connectio
 Field-levels encryption allows you to securely upload user-submitted sensitive information to your web servers.
 
 To use field-level encryption, you configure your CloudFront distribution to specify the set of fields in POST requests that you want to be encrypted, and the public key to use to encrypt them. You can encrypt up to 10 data fields in a request.
+
+CloudFront field-level encryption uses asymmetric encryption, also known as public key encryption. You provide a public key to CloudFront, and all sensitive data that you specify is encrypted automatically. The key you provide to CloudFront cannot be used to decrypt the encrypted values; only your private key can do that.
 
 ## CloudFront Geo Restriction
 
@@ -186,3 +202,12 @@ Use cases include:
 * As part of the Origin request eg. migration between S3 origins
 * Customise behaviour based on the device type of a customer
 * Vary the content displayed by country
+
+## CloudFront Functions
+
+Similar to Lambda@Edge, CloudFront Functions provide a way to run code in response to CloudFront events.
+
+It is ideal for short-running functions such as:
+
+* Transforming an attribute in a HTTP request header
+* Request authorisation
