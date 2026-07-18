@@ -16,7 +16,9 @@ This is a fully managed solution for deploying a multi-region, multi-active data
 
 ## Point-in-time Recovery (PITR)
 
-Is disabled by default and needs to be enabled on a table-by-table basis. It allows for a 35-day recovery window.
+Provides continuous backups with per-second recovery precision. It is disabled by default and needs to be enabled on a table-by-table basis. It allows for a 35-day recovery window.
+
+Enabling PITR does not consume any table provisioned throughput (RCUs/WCUs) and has zero impact on application performance.
 
 ## Access
 
@@ -72,11 +74,21 @@ It allows for creating an alternative view of the table using a different partit
 
 **Streams**
 
-Is a time ordered list of item changes in a table with a 24-hour rolling window. Changes include inserts, updates and deletes.
+Amazon DynamoDB Streams is a feature of AWS DynamoDB that captures a time-ordered sequence of changes (inserts, updates and deletes) to a DynamoDB table. This enables applications to react to data changes in real time. Streams have a 24-hour rolling window.
+
+Stream records are organised into groups or "shards".
 
 **Triggers**
 
 Allow for actions to take place upon a change in the data. Actions can be via a Lambda function.
+
+**Example case**
+
+A user updates a row in DynamoDB -> DynamoDB instantly writes this change into a Stream Shard -> this gets polled internally by AWS -> the Lambda function set as trigger gets invoked.
+
+The Lambda function should have a proper IAM Execution role `AWSLambdaDynamoDBExecutionRole`.
+
+In case the Lambda function needs to write to a private database inside a VPC, the Lambda function must be configured with VPC membership.
 
 ## DynamoDB Accelerator (DAX)
 
@@ -91,3 +103,11 @@ Provides a multi-master cross-region replication. Tables are created in multiple
 ## TTL
 
 Used to set a timestamp for automatic delete of items. Useful for items that lose relevance after a period of time.
+
+## Exam notes
+
+* In DynamoDB, writes to a main table are replicated asynchronously to its GSIs. If a GSI cannot keep up with the write volume because its WCUs are capped, DynamoDB will purposefully throttle the writes on the main table to prevent the index from falling too far behind. Increasing the GSI's auto-scaling upper limit removes this backpressure.
+
+This manifests as a `ProvisionedThroughputExceededException` error on the user side.
+
+* Native DynamoDB backup is regional. For centralised, use AWS Backup for cross-account automated governance.
