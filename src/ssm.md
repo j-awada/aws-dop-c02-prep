@@ -16,13 +16,23 @@ To use SSM, the host needs to have the SSM-agent installed along with proper IAM
 
 ### Session Manager
 
-SSM allows managing instances at scale without the need for bastions, SSH or remote sessions.
+SSM allows managing instances at scale without the need for bastions, SSH or remote sessions. Session Manager is an alternative to traditional SSH or RDP.
 
 By default, AWS Systems Manager does not have permission to perform actions on your instances. You must grant access by using IAM. An instance profile that contains the AWS managed policy `AmazonSSMManagedInstanceCore` is needed to be attached to the EC2 instance for the Session Manager to work.
 
 ### State Manager
 
-Enables configuration management such that EC2 instances or on-prem instances are consistently configrued.
+Enables configuration management such that EC2 instances or on-prem instances are consistently configrued. It focusses on monitoring OS settings, installed applications and other software on a server.
+
+State Manager requires an SSM agent to be running inside the EC2 instance or the on-prem server.
+
+An example for using the State Manager is:
+
+1. creating an Association between a configuration document (eg. SSM Document or Ansible Playbook) and a traget instance(s).
+
+2. defining a schedule for how often the State Manager should check the instance.
+
+3. in case the instance drifts from the defined configuration, the State Manager automatically re-runs the configuration to render the instance compliant.
 
 ### Patch manager
 
@@ -41,7 +51,7 @@ You can create a standard-tier (up to 10,000 parameters at 4 Kb size) or advance
 
 You can create a parameter eg. `/app/app_username` of type String, StringList or Encrypted via the Key Management Service (KMS) that can be used to store configuration information.
 
-The Parameter Store does not provide dedicated storage with lifecycle management and key rotation, unlike the Secrets Manager.
+The Parameter Store does not provide dedicated storage with lifecycle management and key rotation, unlike the Secrets Manager. Parameters are also mostly used within a single account and they cannot be shared directly with another AWS account.
 
 ## AWS Secrets Manager
 
