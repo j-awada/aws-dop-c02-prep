@@ -1,34 +1,5 @@
 # Security practices and automation
 
-## AWS Systems Manager (SSM)
-
-Can be used to configure, schedule, automate and execute operations on AWS resources. Resources include IAM users, groups and roles as well as Lambda functions, EC2 ASG and S3 buckets.
-
-A Systems Manager Automation document defines the Automation workflow (the actions that Systems Manager performs on the managed instances and AWS resources). These documents can perform common tasks such as restarting 1 or more EC2 instances or creating Amazon Machine Images (AMI). Documents use JSON or YAML and include steps that run in sequential order.
-
-To use SSM, the host needs to have the SSM-agent installed along with proper IAM permissions.
-
-SSM can automate common and repetitive IT operations and management tasks across AWS resources. This can be done using JSON documents or on-demand using the `RUN` command.
-
-### Session Manager
-
-SSM allows managing instances at scale without the need for bastions, SSH or remote sessions.
-
-By default, AWS Systems MAnager does not have permission to perform actions on your instances. You must grant access by using IAM. An instance profile that contains the AWS managed policy `AmazonSSMManagedInstanceCore` is needed to be attached to the EC2 instance for the Session Manager to work.
-
-### State Manager
-
-Enables configuration management such that EC2 instances or on-prem instances are consistently configrued.
-
-### Patch manager
-
-Allows applying OS or software patches to a large group of EC2 or on-prem instances.
-
-* Patch Baseline: defines what patches get installed according to operating system and distribution.
-* Patch Groups: act as grouping of compute resources i.e. what gets patched.
-* Maintenance Windows: is the configuration item used to tie all this together.
-* Run Command: `AWS-RunPatchbaseline` is defined within the maintenance window and is used to perform the task on the target group.
-
 ## Amazon Inspector
 
 Is an automated security assessment service that scans EC2 instance and container images for vulnerabilities and deviations from best practices. After performing an assessment, Amazon Inspector produces a detailed list of security findings prioritised by level of severity.

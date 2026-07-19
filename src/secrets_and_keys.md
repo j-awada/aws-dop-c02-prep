@@ -1,4 +1,4 @@
 # Secrets and Keys
 
-* [Credentials and Secrets](./credentials_and_secrets.md)
+* [AWS Systems Manager (SSM)](./ssm.md)
 * [Key Management Service](./kms.md)

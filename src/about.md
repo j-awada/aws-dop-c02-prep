@@ -31,7 +31,7 @@ This book contains material for preparing for the AWS DevOps Professional (DOP-C
     - [Route53](./route53.md)
     - [Content Delivery Network](./cdn.md)
 - [Secrets and Keys](./secrets_and_keys.md)
-    - [Credentials and Secrets](./credentials_and_secrets.md)
+    - [AWS Systems Manager (SSM)](./ssm.md)
     - [Key Management Service](./kms.md)
 - [Security practices and automation](./security_misc.md)
 - [AWS Storage](./storage.md)

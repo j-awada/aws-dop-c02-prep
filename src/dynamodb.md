@@ -108,6 +108,6 @@ Used to set a timestamp for automatic delete of items. Useful for items that los
 
 * In DynamoDB, writes to a main table are replicated asynchronously to its GSIs. If a GSI cannot keep up with the write volume because its WCUs are capped, DynamoDB will purposefully throttle the writes on the main table to prevent the index from falling too far behind. Increasing the GSI's auto-scaling upper limit removes this backpressure.
 
-This manifests as a `ProvisionedThroughputExceededException` error on the user side.
+    This manifests as a `ProvisionedThroughputExceededException` error on the user side.
 
 * Native DynamoDB backup is regional. For centralised, use AWS Backup for cross-account automated governance.
