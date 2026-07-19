@@ -43,6 +43,7 @@ This book contains material for preparing for the AWS DevOps Professional (DOP-C
 - [SNS and SQS](./sns_and_sqs.md)
 - [CloudWatch](./cloudwatch.md)
 - [Kinesis](./kinesis.md)
+- [AWS Config](./config.md)
 - [Disaster Recovery](./dr.md)
 - [Architecture evolution example 1](./ae_example_1.md)
 - [Final exam notes](./final_exam_notes.md)

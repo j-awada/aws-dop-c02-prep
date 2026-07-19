@@ -145,8 +145,6 @@
 
 * Amazon ECR supports image scanning via Amazon Inspector or other integrated tools to detect known vulnerabilities in containers before deployment.
 
-* A conformance pack is a collection of AWS Config rules and remediation actions that can be deployed as a single entity in an account, region or across an organisation. They can ensure that all deployed infrastructure meets compliance and security standards automatically.
-
 * EC2 Auto Recovery monitors health and recovers the instance in the same AZ. It ensures quick recovery without manual intervention.
 
 * An ECS service maintains the desired task count and automatically replaces failed tasks when integrated with health checks.
@@ -154,10 +152,6 @@
 * Elastic Disaster Recovery (DRS) can be set up on source servers to initiate secure data replication. This minimises downtime and data loss reducing both RTO and RPO significantly.
 
 * Route53 health checks with latency routing provide automated failover and route users to the nearest healthy region.
-
-* Note that AWS Config evaluates periodically and not in real-time. It continuously evaluates resources against rules. It triggers automatic remediation using an SSM Automation document. There is a list of remediation actions to use or you can create custom remediation actions using AWS Systems Manager Automation documents.
-
-* AWS Config can not be used to perform emergency maintenance on instances.
 
 * To ensure that an application does not experience downtime during database credentials rotation, a multi-user rotation strategy is used where the Secrets Manager creates 2 database users and alternates between them during rotation.
 
@@ -288,28 +282,6 @@
 * Patch Manager uses patch baselines, which include rules for auto-approving patches within days of their release.
 
     Patches can be installed by scheduling them to run as a Systems Manager maintenance window task. Patches can be installed individually or to large groups of instances by using EC2 tags.
-
-* With AWS Config, you can:
-
-    - Evaluate AWS resource configurations for desired settings
-    - Stream configuration changes and notifications to an Amazon SNS topic
-    - Get a snapshot of current configurations
-    - Retrieve historical configurations of 1 or more resources
-    - Receive a notification whenever a resource is created, modified or deleted
-    - View relationships between resources
-
-* An aggregator is an AWS Config resource type that collects AWS Config configuration and compliance data from:
-
-    - multiple accounts and multiple regions
-    - single account and multiple regions
-    - an organisation in AWS Organizations and all the accounts in that organisation
-
-* When you add a rule to AWS Config, you can specify when you want it to evaluate the rule i.e. the trigger. There are 2 types of triggers:
-
-    1. Configuration changes
-    2. Periodic
-
-    If both triggers are chosen, AWS Config invokes the Lambda function when it detects a configuration change and also at the frequency specified.
 
 * AWS Application Discovery Service helps you plan your migration to the AWS cloud by collecting usage and configuration data about your on-prem servers. Application Discovery Service is integrated with AWS Migration Hub.
 
