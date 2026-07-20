@@ -109,3 +109,11 @@ CloudFormation currently supports the following dynamic reference patterns:
 * CFN offers drift detection
 * What can be done is:
     - removing the logical resources while keeping the physical resources in place and then importing those physical resources to bring back into sync the relationship between logical and physical resources
+
+### Exam notes
+
+* If a multi-region deployment via StackSets fails in the first region and the engineer wants to ensure that future failures stop the rollout immediately, the `FailureTolerance` parameter can be decreased to 0 or 1 so that a single failure terminates the entire global deployment execution loop.
+
+* If a CloudFormation stack deployment fails and gets permanently stuck in `UPDATE_ROLLBACK_FAILED` because an S3 bucket was manually deleted, execute the `ContinueUpdateRollback` action via the CLI/Console, specify skipping the deleted S3 bucket and let the stack reach a stable state then manually remove it from the template.
+
+* To create a decoupled, shareable infrastructure without hardlocking stacks, do not use `Fn::ImportValue`. Instead, publish the variable into SSM Parameter Store using a strict naming pattern and have the application stack read the values dynamically using Dynamic References. This helps avoid locked dependencies.
