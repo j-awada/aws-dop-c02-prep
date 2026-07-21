@@ -297,6 +297,8 @@
 
 * You can use a NAT (Network Address Translation) gateway to enable instances in a private subnet to connect to the internet or other AWS services but prevent the internet from initiating a connection with those instances.
 
+    Unlike an Internet Gateway (IGW) which is bi-directional (inbound and outbound), a NAT Gateway is unidirectional (outbound only).
+
     To create a NAT gateway, you must specify the public subnet in which the NAT gateway should reside. You must also specify an Elastic IP address to associate with the NAT gateway when you create it. The Elastic IP address cannot be changed once you associate it with the NAT Gateway.
 
     After you've created a NAT gateway, you must update the route table associated with one or more of your private subnets to point internet-bound traffic to the NAT gateway. This enables instances in your private subnets to communicate with the internet.
