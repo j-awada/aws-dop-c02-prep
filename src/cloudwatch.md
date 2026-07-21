@@ -6,6 +6,10 @@ Note that the CloudWatch Dashboard is primarily used to monitor AWS resources an
 
 ## Alarms
 
+The ability to search and filter log data arriving at CloudWatch Logs is achieved by creating 1 or more **metric filters**.
+
+Metric filters define the terms and patterns to look for in log data as it is sent to CloudWatch Logs. CloudWatch Logs uses these metric filters to turn log data into numerical CloudWatch metrics that you can graph or set an alarm on.
+
 A CloudWatch alarm can be created and used in `CodeDeploy` operations. The alarm watches a single metric over time and performs 1 or more actions based on the value of the metric relative to the given threshold over time. With `CodeDeploy`, you can configure a deployment group to stop when the alarm gets activated.
 
 ## Log event
