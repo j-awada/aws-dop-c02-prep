@@ -15,7 +15,7 @@ AWS provides a range of tools that support all of those stages, for example:
 
 These AWS tools are isolated but they can be configured together using AWS CodePipeline which orchestrates the development pipeline.
 
-A pipeline is linked to 1 branch in a repository eg. a `main` pipeline and a `dev` pipeline.
+A pipeline is linked to 1 branch in a repository eg. a `main` pipeline or a `dev` pipeline.
 
 ## CodeCommit
 
@@ -100,7 +100,9 @@ This comes built-in with CodeDeploy to provide gradual AWS Lambda deployments. I
 
 Is a continuous delivery tool designed to control the flow from source code through build and finally deployment. It is the glue that holds things together. It is a service used to model, visualise and automate the steps required to release a software.
 
-Pipelines are built from Stages which contain sequential or parallel actions. The output of one action can be the input of another action.
+Pipelines are built from Stages (eg. Build stage) which contain sequential or parallel actions. The output of one action can be the input of another action.
+
+A single pipeline structure is hosted in a single region; however, individual Actions within a stage can execute in a different target region. When you configure a cross-region action, CodePipeline requires an S3 artifact bucket in every target region where an action takes place.
 
 <div align="center">
     <img src="./images/code_pipeline.png" alt="CodePipeline" width="500" />
