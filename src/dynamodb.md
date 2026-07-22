@@ -92,7 +92,13 @@ In case the Lambda function needs to write to a private database inside a VPC, t
 
 ## DynamoDB Accelerator (DAX)
 
-Is an in-memory cache for DynamoDB that improves performance.
+DAX is a DynamoDB-compatible caching service that enables you to benefit from fast in-memory performance for demanding applications. DAX addresses three core scenarios:
+
+* As an in-memory cache, DAX reduces the response times of eventually consistent read workloads by an order of magnitude, from single-digit milliseconds to microseconds.
+
+* DAX reduces operational and application complexity by providing a managed service that is API-compatible with DynamoDB. Therefore, it requires only minimal functional changes to use with an existing application.
+
+* For read-heavy or bursty workloads, DAX provides increased throughput and potential operational cost savings by reducing the need to over-provision read capacity units. This is especially beneficial for applications that require repeated reads for individual keys
 
 The interaction with the DynamoDB database is handled by the DAX SDK rather than the user application itself.
 
