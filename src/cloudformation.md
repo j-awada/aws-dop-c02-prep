@@ -101,7 +101,8 @@ CloudFormation currently supports the following dynamic reference patterns:
 
 * CFN doesn't support creating all AWS products
 * Use custom resources to compensate for what CFN does not support natively
-    - eg. a Lambda function used to populate or remove items from a bucket. This is because CFN can't delete buckets that have objects in them. The Lambda function receives a CREATE or DELETE event and then uploads or deletes bucket items. The custom resource references both the Lambda function and then bucket
+    - eg. a Lambda function used to populate or remove items from a bucket. This is because CFN can't delete buckets that have objects in them. The Lambda function receives a CREATE or DELETE event and then uploads or deletes bucket items. The custom resource references both the Lambda function and then bucket.
+
 
 ### CFN drift detection
 
@@ -117,3 +118,5 @@ CloudFormation currently supports the following dynamic reference patterns:
 * If a CloudFormation stack deployment fails and gets permanently stuck in `UPDATE_ROLLBACK_FAILED` because an S3 bucket was manually deleted, execute the `ContinueUpdateRollback` action via the CLI/Console, specify skipping the deleted S3 bucket and let the stack reach a stable state then manually remove it from the template.
 
 * To create a decoupled, shareable infrastructure without hardlocking stacks, do not use `Fn::ImportValue`. Instead, publish the variable into SSM Parameter Store using a strict naming pattern and have the application stack read the values dynamically using Dynamic References. This helps avoid locked dependencies.
+
+* If a custom resource in a CFN stack is used to invoke a Lambda function, the request will include a pre-signed URL. The Lambda function is responsible for returning a response to this pre-signed URL to indicate if the resource creation was successful or not. If the Lambda function fails to respond to the pre-signed URL, the CloudFormation stack will remain in the `CREATE_IN_PROGRESS` state.
