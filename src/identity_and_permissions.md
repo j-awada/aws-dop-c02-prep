@@ -3,3 +3,4 @@
 * [IAM](./iam.md)
 * [AWS organisations](./aws_organisations.md)
 * [Advanced Identity and Permissions](./advanced_identity_and_permissions.md)
+* [Amazon Cognito](./cognito.md)

@@ -4,3 +4,4 @@
 * [Elastic File System](./efs.md)
 * [S3 Object Storage](./s3_misc.md)
 * [DynamoDB](./dynamodb.md)
+* [ElastiCache](./elasticache.md)
