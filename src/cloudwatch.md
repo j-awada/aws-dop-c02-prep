@@ -36,6 +36,14 @@ Are a feature of CloudWatch Logs that allow you to distribute log data from one 
 
 Is a serverless, fully managed and scalable event bus that enables integrations between AWS services and other applications. EventBridge was formerly called CloudWatch Events. It is used to monitor AWS resources and the applications running on AWS to detect and react to changes based on rules you create that EventBridge can invoke eg. sending notifications, taking a corrective action or other.
 
+You can select the following types of targets when using EventBridge as part of the Trusted Advisor workflow:
+
+* Lambda functions
+* Kinesis streams
+* Simple Queue Service (SQS)
+* CloudWatch alarms
+* Simple Notification Service (SNS) topics
+
 It makes it easier to connect applications such that events can be ingested, filtered, transformed and delivered without writing custom code.
 
 # CloudTrail
