@@ -139,7 +139,7 @@
 
 ## Automation
 
-* To manage security patches for EC2 instances and on-prem servers, install the AWS Systems Manager agent and create a Hybrid Activation.
+* To manage security patches for EC2 instances and on-prem servers, install the AWS Systems Manager agent and create a Hybrid Activation. In the console, the IDs of the hybrid instances are distinguished from EC2 instance with the prefix `mi-`. The EC2 instances use the prefix `i-`.
 
 * State Manager allows adminstrators to apply and maintain consistent configurations using pre-defined or custom SSM documents ensuring automated and continuous compliance across accounts.
 
