@@ -267,6 +267,10 @@
 
     Metric filters define the terms and patterns to look for in log data as it is sent to CloudWatch Logs.
 
+* Elastic Load Balancing provides access logs that capture detailed information about requests sent to the load balancer. Each log contains information such as time the request was received, the client's IP address, latencies, request path and server response.
+
+    Access logging is an optional feature of Elastic Load Balancing that is disabled by default. After enabling it, the logs are stored in a specified S3 bucket as compressed files. Encryption and decryption of the log files is done automatically.
+
 ## Disaster recovery
 
 * Application Recovery Controller (ARC) is a service that simplifies and automates the recovery of applications deployed across multiple AZs and regions. It enhances application resilience by managing failover and recovery during outages.
