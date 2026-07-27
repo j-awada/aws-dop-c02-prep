@@ -308,3 +308,5 @@
     After you've created a NAT gateway, you must update the route table associated with one or more of your private subnets to point internet-bound traffic to the NAT gateway. This enables instances in your private subnets to communicate with the internet.
 
     Each NAT gateway is created in a specific AZ and implemented with redundancy in that zone.
+
+* A transit gateway acts as a regional virtual router for traffic flowing between your virtual private clouds (VPCs) and on-premises networks. It enables attaching VPCs and VPN connections and it can route traffic between them.
