@@ -14,6 +14,8 @@ A primary key can be simple (Partition) aka `pk` or composite which is a combina
 
 This is a fully managed solution for deploying a multi-region, multi-active database without having to build and maintain your own replication solution. You can specify the AWS regions where you want the tables to be available and DynamoDB will propagate ongoing data changes to all of them.
 
+Global tables provide multi-master cross-region replication. Tables are created in multiple regions and added to the same global table becoming a replica table.
+
 ## Point-in-time Recovery (PITR)
 
 Provides continuous backups with per-second recovery precision. It is disabled by default and needs to be enabled on a table-by-table basis. It allows for a 35-day recovery window.
@@ -101,10 +103,6 @@ DAX is a DynamoDB-compatible caching service that enables you to benefit from fa
 * For read-heavy or bursty workloads, DAX provides increased throughput and potential operational cost savings by reducing the need to over-provision read capacity units. This is especially beneficial for applications that require repeated reads for individual keys
 
 The interaction with the DynamoDB database is handled by the DAX SDK rather than the user application itself.
-
-## Global Tables
-
-Provides a multi-master cross-region replication. Tables are created in multiple regions and added to the same global table becoming a replica table.
 
 ## TTL
 
