@@ -15,3 +15,5 @@
 | Scope | Single AZ | Regional (multi-AZ via mount targets) | Regional, replicated across ≥3 AZs (Standard) |
 | OS support | Linux & Windows | Linux only (NFSv4) | Any (HTTP API) |
 | Scaling | Manual resize | Elastic, automatic | Effectively unlimited |
+| Speed | Lowest latency (local block device, especially io2/gp3) | Higher latency than EBS (network file system overhead) | Higher latency, but high throughput/parallelism for many objects |
+| Cost | Pay for provisioned capacity (GB/month), regardless of usage | Pay for storage used (GB/month), no pre-provisioning; pricier per GB than EBS | Cheapest per GB, especially with lifecycle tiers (IA, Glacier) |
