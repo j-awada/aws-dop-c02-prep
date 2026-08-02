@@ -11,7 +11,7 @@ You can also configure containers in your tasks to send log information to Cloud
 **1. EC2 mode**
 
 * There is some overhead but allows for flexibility.
-* It required manual component management for eg. scheduling, orchestration, cluster management and PlacementEngine.
+* It requires manual component management for eg. scheduling, orchestration, cluster management and PlacementEngine.
 * EC2 is used to run containers with ASG (Auto Scaling Group).
 * You would manage the container host, capacity and availability.
 

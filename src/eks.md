@@ -2,7 +2,7 @@
 
 Is a fully managed service that simplifies running, securing and scaling Kubernetes applications on AWS without needing to install or maintain your own control plane. It eliminates operational overhead by automatically managing and scaling the Kubernetes master nodes.
 
-The control plance is distibuted and managed across multiple AZs for high availability. Compute options include running workloads using EC2, Fargate or with EKS Auto Mode.
+The control plane is distibuted and managed across multiple AZs for high availability. Compute options include running workloads using EC2, Fargate or with EKS Auto Mode.
 
 ## Storage permissions
 
