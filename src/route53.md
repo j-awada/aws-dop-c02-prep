@@ -87,7 +87,7 @@ Split-view is when you have public and private hosted zones. You can expose cert
 
 ## CNAME vs. ALIAS
 
-An A record maps a name to a v4 IP address. A CNAME maps a name to another name eg. www.mydomain.io => mydomain.io
+An A record maps a name to a v4 IP address. CNAME maps a name to another name eg. www.mydomain.io => mydomain.io
 
 CNAME can not use a naked domain (apex domain) eg. mydomain.io to point at another name.
 

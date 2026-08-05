@@ -14,13 +14,13 @@ To use SSM, the host needs to have the SSM-agent installed along with proper IAM
 
 * Execution role (in the target accounts): is the `AWS-SystemsManager-AutomationExecutionRole` role which would have permissions to perform actions like patching or terminating instances.
 
-### Session Manager
+## Session Manager
 
 SSM allows managing instances at scale without the need for bastions, SSH or remote sessions. Session Manager is an alternative to traditional SSH or RDP.
 
 By default, AWS Systems Manager does not have permission to perform actions on your instances. You must grant access by using IAM. An instance profile that contains the AWS managed policy `AmazonSSMManagedInstanceCore` is needed to be attached to the EC2 instance for the Session Manager to work.
 
-### State Manager
+## State Manager
 
 Enables configuration management such that EC2 instances or on-prem instances are consistently configrued. It focusses on monitoring OS settings, installed applications and other software on a server.
 
@@ -34,7 +34,7 @@ An example for using the State Manager is:
 
 3. in case the instance drifts from the defined configuration, the State Manager automatically re-runs the configuration to render the instance compliant.
 
-### Patch manager
+## Patch manager
 
 Allows applying OS or software patches to a large group of EC2 or on-prem instances.
 

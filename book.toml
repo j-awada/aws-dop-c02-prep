@@ -6,3 +6,4 @@ title = "AWS Professional DevOps Certificate Material"
 [output.html]
 site-url = "/aws-dop-c02-prep/"
 number-chapters = false
+additional-css = ["theme/custom.css"]

@@ -281,6 +281,8 @@
 
     Disabling cross-zone load balancing on an ALB means that each load balancer node in an AZ routes requests only to targets within the same AZ.
 
+* You can call the EBS Create Snapshot directly as a target from Amazon EventBridge. You can also configure Amazon EventBridge rules to create automated snapshots of an existing Amazon Elastic Block Store (Amazon EBS) volume on a schedule. EventBridge allows you to specify a fixed rate for creating snapshots at regular intervals or use a cron expression to schedule snapshots at specific times of the day.
+
 ## Configuration management
 
 * Patch Manager uses patch baselines, which include rules for auto-approving patches within days of their release.
