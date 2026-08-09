@@ -64,7 +64,7 @@ Amazon RDS uses the Amazon SNS (Simple Notification Service) to provide notifica
 
 **RDS snapshots**
 
-The first copy is a full snapshot copy which contains all of the data and metadata required to restore the DB instance. After this first snapshot, incremental snapshots can be taken of the DB instance where only data that has changed after the most recent snapshot gets copied.
+The first copy is a full snapshot copy which contains all of the data and metadata required to restore the DB instance. After this first snapshot, incremental snapshots of the DB instance can be taken where only data that has changed after the most recent snapshot gets copied.
 
 Incremental snapshot copying is faster and results in lower storage costs than full snapshot copying.
 

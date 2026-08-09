@@ -149,21 +149,21 @@ Lifecycle configuration is a set of rules that consist of actions which apply ba
 
 Actions can be of 2 types:
 
-* Transition actions: they can change the storage class of an object eg. from S3 Standard to S3 Standard-IA.
+1. Transition actions: they can change the storage class of an object eg. from S3 Standard to S3 Standard-IA.
 
-Note this exception: objects in S3 One Zone-IA can transition into S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive but not S3 Glacier Instant Retrieval.
+    Note this exception: objects in S3 One Zone-IA can transition into S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive but not S3 Glacier Instant Retrieval.
 
-<div align="center">
-    <img src="./images/s3-storage-class-transition.png" alt="s3 storage class transition" width="500" />
-</div>
+    <div align="center">
+        <img src="./images/s3-storage-class-transition.png" alt="s3 storage class transition" width="500" />
+    </div>
 
-Transition can not happen in an upward direction, only downward.
+    Transition can not happen in an upward direction, only downward.
 
-Note that if an object is stored in S3 Standard, it requires to have been there for a minimum of 30 days before transitioning to an infrequent access tier like S3 Standard-IA or S3 One Zone-IA.
+    Note that if an object is stored in S3 Standard, it requires to have been there for a minimum of 30 days before transitioning to an infrequent access tier like S3 Standard-IA or S3 One Zone-IA.
 
-A duration of 30 days is required if objects were to transition further from IA tiers to Glacier classes.
+    A duration of 30 days is required if objects were to transition further from IA tiers to Glacier classes.
 
-* Expiration actions: they can delete objects or object versions.
+2. Expiration actions: they can delete objects or object versions.
 
 ## S3 Replication
 

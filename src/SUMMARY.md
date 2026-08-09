@@ -38,7 +38,7 @@
     - [DynamoDB](./dynamodb.md)
     - [ElastiCache](./elasticache.md)
 - [SNS and SQS](./sns_and_sqs.md)
-- [CloudWatch](./cloudwatch.md)
+- [Logging](./logging.md)
 - [Kinesis](./kinesis.md)
 - [AWS Config](./config.md)
 - [Disaster Recovery](./dr.md)

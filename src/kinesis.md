@@ -28,7 +28,7 @@ EMR runs in 1 AZ in a VPC and uses EC2 for compute. It can load input data from 
 
 The EMR cluster architecture consists of:
 
-* The HDFS which runs alongside the cluster and is ephemeral i.e. linked to the lifetime of the cluster
+* the HDFS which runs alongside the cluster and is ephemeral i.e. linked to the lifetime of the cluster
 * a master node which manages the cluster and can be ssh-ed to
 * a number of core nodes that act as data nodes for HDFS and can run or track tasks
 * task nodes that are optional and have no HDFS involvement, they just run tasks
