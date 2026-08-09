@@ -2,7 +2,7 @@
 authors = ["j-awada"]
 language = "en"
 src = "src"
-title = "AWS Professional DevOps Certificate Material"
+title = "AWS Certified DevOps Engineer Professional"
 [output.html]
 site-url = "/aws-dop-c02-prep/"
 number-chapters = false
