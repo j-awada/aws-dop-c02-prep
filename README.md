@@ -1,8 +1,13 @@
-# AWS Professional DevOps certificate prep material
+# AWS Certified DevOps Engineer Professional notes
 
-Material found in this repo is created from various sources, most notably:
+This repo contains notes from preparing for the AWS DevOps Professional certificate (DOP-C02).
+
+Resources used during the exam prep include:
 
 * [The AWS Certified DevOps Engineer course by Adrian Cantrill](https://cantrill.io/)
+* [Tutorial Dojo pactice Exams by Jon Bonso](https://tutorialsdojo.com)
+
+### mdBook usage
 
 ```Bash
 # Create a book
